@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="dual-booting">
+<meta itemprop="description" content="This is a guide to a bare metal dual boot of Windows 10 and Ubuntu. No emulation, or virtualization. Most of this guide comes from my personal experiance over several years of having a dual boot install, any pain points that I highlight are because I have experianced them myself. Obiviously, this is not
+a complete resource of all the information you might need to do this, but this post does have all the information you mighy need."><meta itemprop="datePublished" content="2021-04-06T22:32:51-05:00" />
+<meta itemprop="dateModified" content="2021-04-06T22:32:51-05:00" />
+<meta itemprop="wordCount" content="1818">
+<meta itemprop="keywords" content="" /><meta property="og:title" content="dual-booting" />
+<meta property="og:description" content="This is a guide to a bare metal dual boot of Windows 10 and Ubuntu. No emulation, or virtualization. Most of this guide comes from my personal experiance over several years of having a dual boot install, any pain points that I highlight are because I have experianced them myself. Obiviously, this is not
+a complete resource of all the information you might need to do this, but this post does have all the information you mighy need." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.smantic.dev/posts/dual-boot/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-06T22:32:51-05:00" />
+<meta property="article:modified_time" content="2021-04-06T22:32:51-05:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="dual-booting"/>
+<meta name="twitter:description" content="This is a guide to a bare metal dual boot of Windows 10 and Ubuntu. No emulation, or virtualization. Most of this guide comes from my personal experiance over several years of having a dual boot install, any pain points that I highlight are because I have experianced them myself. Obiviously, this is not
+a complete resource of all the information you might need to do this, but this post does have all the information you mighy need."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>dual-booting</title>
+	<link rel="stylesheet" href="https://blog.smantic.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://blog.smantic.dev">smantics</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://blog.smantic.dev/posts/">Posts</a>
+				<a href="https://blog.smantic.dev/readme/">About</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://github.com/" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://blog.smantic.dev/posts/">Posts</a></li>
+			<li><a href="https://blog.smantic.dev/readme/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 6, 2021</span></div>
+				<h1>dual-booting</h1>
+			</header>
+			<div class="content">
+				<p>This is a guide to a bare metal dual boot of Windows 10 and Ubuntu. No emulation, or virtualization.
+Most of this guide comes from my personal experiance over several years of having a dual boot install,
+any pain points that I highlight are because I have experianced them myself. Obiviously, this is not<br>
+a complete resource of all the information you might need to do this, but this post does have all the information you mighy need.</p>
+<p>Notice that I say that it is a dual boot of Windows 10, and Ubuntu (windows first).
+Unfortuantly the Windows installer has a terrible habit of destroying
+any other operating system<!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->
+that may be existing peacefully on the computer that it is being installed on.
+The solution to this? Simple, just install windows first.</p>
+<h2 id="installing-windows">Installing Windows<a href="#installing-windows" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Thankfully, thats not an issue for you because you are an intelligent, responsible human being that will avoid uneccessary complications when possible.
+Here is what you will need to install windows.
+A flash drive with atleast 8gb of space and a windows computer with atleast 8gb of space on the C:/ drive.
+Yes you need a windows computer to install windows.
+Once you have those go ahead and download and run window&rsquo;s installation media.
+Again make sure there is plenty of storage both on the flashdrive and computer that you are running the installation media on because other wise the installation media will fail!! <!-- raw HTML omitted --></p>
+<p>Depending on what you are installing onto you may need to familarlize yourself with the partions on your system.
+When are doing the windows installation, the installer is not going to be helpful to identify what partition is which.
+If you are on windows open up the Disk Management program, and if you are linux open up Gparted or whatever your distro uses to do Partition Management.
+You will want to identify what drive you want to install onto, and what partions you will need or want to delete ( format ).
+If you are installing onto brand new drives with no existing partions then dont worry about it. <!-- raw HTML omitted --></p>
+<p>After closing your 5 tabs of reddit that you opened after getting bored waiting for the installation media; go ahead and plug that flash drive into the computer you want to dual boot on.
+Restart your computer now. But before you do that look up what your bios key is &mdash;  too late? Quick! Spam f2 and delete vigoriously.
+Nice. Now click around your bios interface randomly for 10 minutes until you find where you can select what device to boot into.
+Select the one that has the brand name of your flash drive and UEFI in the name of the partition.<!-- raw HTML omitted --></p>
+<p>Nice! Now its time to break shit!!
+Select the advanced installation option when you get to it because we don&rsquo;t trust windows to anything right.
+This will bring up a view of the different partions on your system.
+Hopefully you identified which drive you wanted to install on before hand.<!-- raw HTML omitted --><!-- raw HTML omitted -->7<!-- raw HTML omitted --><!-- raw HTML omitted -->
+Go ahead and delete any partitions you don&rsquo;t need anymore (such as an old windows partion, or old linux partions ).
+After you have created some free space on the drive you want to install on (i.e. your SSD, not the hard disk),
+select the free space to install into.
+After that Cortona will attempt to slide in your DMs
+and start ask you a serries of invasive questions such as your name, password, location, and your mother&rsquo;s maiden name.
+Make sure to select no, or skip whenever possible otherwise windows might server you adds.</p>
+<h3 id="installing-windows-and-linux-on-the-same-device">Installing Windows and Linux on the Same Device<a href="#installing-windows-and-linux-on-the-same-device" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>This part is for the really dense people out there that will inevitably want to have their linux partion and their windows on the same SSD for those fast boot times.
+Or you just only have 1 drive to install anything on.
+This idea is folish because the minute that Microsoft decides they want to change their boot process,
+or even decide it&rsquo;s a &ldquo;good idea&rdquo; to overwrite the master boot record again which will break your GRUB bootlooader.
+Microsoft could change other things, and possibly even brick the linux kernal that happened to be on the same drive.
+My linux kernal went into a panic at the sight of windows attempting to update, and my windows update is stuck in a forever fail loop.
+But if you want to continue down this accursed path you will want to open window&rsquo;s Disk management program so that you can resize your windows partion to make room for linux. <!-- raw HTML omitted --></p>
+<h2 id="installing-linux">Installing Linux<a href="#installing-linux" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<!-- raw HTML omitted -->
+<p>After this boot into your bios again and select to boot into the flash drive.<br>
+You should be greated by a friendly GRUB interface, select the Ubuntu installation.
+You will get the option to to connect to the interent to download extra propreitary Software/Drivers,
+I&rsquo;d recomend doing that as it&rsquo;s convient and free software is a conversation for another day.
+I&rsquo;d esspically recomend doing this if you are running a computer with a Nividia graphics card
+or if your on a laptop that has just recently came into the market.</p>
+<p>When you get to the point where the Installer asks how you want to install, select &ldquo;Something else&rdquo;, instead of the other options. We are going to manually create the partitions to ensure the partions are set up how we want them to be.<!-- raw HTML omitted --><br>
+These are the partitions that we will want to have, enter them in this order.</p>
+<!-- raw HTML omitted -->
+<p>The Ubuntu installer can do this for you, but depending on what you are installing on top of,
+it might not be an ideal set up, or it might install along side your windows partition even if room on that drive is tight.
+I should also mention that you can elect to have root and /home in the same partition,
+but some seperation between your files and the operating system can be pragmatic
+for when it comes time to upgrade Ubuntu your /home parition wont be touched.</p>
+<p>Once you&rsquo;re finished go ahead and reboot into your bios, ensure that the drive you installed linux on is listed first in the boot order.
+After that, select to boot into windows, and then boot into linux again.
+This is to just make sure your both of your installations work, and that they aren&rsquo;t going to brick each other after booting in one of them.
+After booting into windows your GRUB should recognize windows as an option to boot into now, so you won&rsquo;t need to go into the BIOS everytime you want to boot into windows.</p>
+<p>And thats it! All done! Hopefullly, everything went smoothly for you, otherwise don&rsquo;t be afraid to ask for help.
+Do your best to identify what the problem may be and other people will do their best to help you solve it!</p>
+<h1 id="annotations">Annotations<a href="#annotations" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+<h3 id="1---windows-installer">1 - Windows installer<a href="#1---windows-installer" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>I may of over exaggerated a bit. Windows will just overwrite the the master boot record on the drive, because the master boot record should show how to boot onto windows.
+Unfortuantely, this makes it making much more difficult to boot into your ubuntu partition again.<br>
+To do so you will have to do a boot-repair, which can be difficult if you&rsquo;re not sure what you&rsquo;re doing, and also not really gauranteed to work.
+So just install linux last! To start the boot-repair process you will need to execute these commands:</p>
+<pre><code>sudo add-apt-repository ppa:yannubuntu/boot-repair 
+sudo apt-get update
+sudo apt-get install boot-repair
+</code></pre><h3 id="2---partition-sizes">2 - Partition Sizes<a href="#2---partition-sizes" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>When creating custom paritions like this it&rsquo;s important to understand how large the partitions need to be inorder to
+conserve space by not makeing extra large partitions, as well as making sure the paritions have enough space for their intended use.</p>
+<!-- raw HTML omitted -->
+<h3 id="3---order-of-partions">3 - Order of Partions<a href="#3---order-of-partions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Interestingly enough the order of the paritions that we put in might matter. I didn&rsquo;t know about this before writing this guide, so I&rsquo;ve included some interesting findings.</p>
+<!-- raw HTML omitted -->
+<h3 id="4---seperate-home-directory">4 - Seperate Home directory<a href="#4---seperate-home-directory" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>If you plan on storing a lot of things in your /home directory (photo albums or whatever),
+it may be prudent to have a seperate /home partition so you can safely upgrade your system (or even change distros) without worring about losing your data stored in /home.
+Also, I believe it&rsquo;s possible to have 2 distros on one system, that share a /home partition, so you can swap between your arch distro, and ubuntu or whatever
+and have access to the same files, altho I can&rsquo;t gaurentee this will work perfectly. <!-- raw HTML omitted --></p>
+<h3 id="5---what-version-to-download">5 - What version to download?<a href="#5---what-version-to-download" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>In most cases you will want to want to use the latest long term support (LTS)
+version as version provide great stablity, infrequent updates, you know&hellip; plenty of support.
+There are some cases in which you may want to install the newer version of Ubuntu however.
+One of those cases is when you have purchased newer hardware that only newer versions of the linux kernal or
+newer versions of the distro contains fixes needed for that piece of hardware to operate correctly.
+Specifically this should only be a problem for laptops. Consult <!-- raw HTML omitted -->this<!-- raw HTML omitted --> or
+any up to date compatablity list to see if your hardware is compatible.</p>
+<h3 id="6---windows-update-forever-fail-loop">6 - Windows Update Forever Fail Loop<a href="#6---windows-update-forever-fail-loop" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>For some reason
+it&rsquo;s possible for your windows update to corrupt, and fail everytime you attempt to update.
+My best guess is that the presence of Linux on the same drive as linux scares windows so it breaks and abandon the update at the sight of a
+partion that it doesnt recognize.
+This wouldn&rsquo;t be so bad if Microsoft wasn&rsquo;t so aggressive about updating windows,
+some older versions of windows 10 you couldn&rsquo;t turn your computer off without going through the update process if there is an update pending.
+If you do install windows and linux on the same drive save you self some grief and disable updates completely.
+You can acomplish this by opening up the &ldquo;Services&rdquo; program, finding windows update, select the properties of the service, and change startup type to &ldquo;disabled&rdquo;.
+Although it&rsquo;s possible by the time you are reading this, Microsoft has changed how this is done, and this is no help to you. Sorry.</p>
+<h3 id="7--identifing-your-disks">7 -Identifing your disks<a href="#7--identifing-your-disks" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>If you are in the middle of an installation of windows and you&rsquo;re not sure which drive is which it&rsquo;s still possible to figure out.<br>
+The easiest way to go about it if you are like me is to add up all the space on a particular drive to identify what drive it is. <br>
+The space is identified as bytes instead of Gigabytes, so you will need to divide the total by 10 9 in order to get what the size is in gigabytes.
+Hopefully this should help you identify what drive is which, assuming you remember what the size of your drives are.
+There are probably other ways to go about it, but is it really worth it if it&rsquo;s more work than this?</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>1818 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-04-06 22:32 -0500</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://blog.smantic.dev/posts/retro-gaming/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>retro-gaming-devices</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2021 <a href="https://blog.smantic.dev">tyler beverley</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://blog.smantic.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://blog.smantic.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on smantics</title>
+		<link>https://blog.smantic.dev/posts/</link>
+		<description>Recent content in Posts on smantics</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+		<lastBuildDate>Wed, 07 Apr 2021 17:37:50 -0500</lastBuildDate>
+		<atom:link href="https://blog.smantic.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>retro-gaming-devices</title>
+			<link>https://blog.smantic.dev/posts/retro-gaming/</link>
+			<pubDate>Wed, 07 Apr 2021 17:37:50 -0500</pubDate>
+			
+			<guid>https://blog.smantic.dev/posts/retro-gaming/</guid>
+			<description>I loved playing pokemon games as kid. Problem is that I still love playing them. I&amp;rsquo;ve played pokemon games on emulators at my PC, but sitting at computer after I just sat there all day for my job doesn&amp;rsquo;t really capture the joys of my childhood.
+So I&amp;rsquo;ve started to trying to find a handheld device that will let me rexperiance the glory days of the game boy and the nintendo DS.</description>
+			<content type="html"><![CDATA[<p>I loved playing pokemon games as kid. Problem is that I still love playing them.
+I&rsquo;ve played pokemon games on emulators at my PC, but sitting at computer after I just sat there all day for my job doesn&rsquo;t really capture the joys of my childhood.<br>
+So I&rsquo;ve started to trying to find a handheld device that will let me rexperiance the glory days of the game boy and the nintendo DS.</p>
+<p>However, it&rsquo;s been a decade plus since I last used any of my nintendo handhelds,
+and even if I knew where they were I doubt they&rsquo;d be very useable at this point. Not to mention that I have new expectations of the hardware I use.
+The only charging adapters I have now are usbc, and the only SD cards I own are 256 gb or more. Both of which didn&rsquo;t exist in 2006.</p>
+<p>Ideally I&rsquo;d like to use my switch to play the classic pokemon games that I loved. It has everything I want in a handheld console in 2021.
+Support for large capacity sd cards, usbc connection and charging, as well as detachable controller and the ability drive a widescreen tv.
+However, the ability to play the old pokemon games that I love is virtually non-existant on the switch.
+I&rsquo;ve explored what homebrew is like on the switch, with moderate success but immense disapointment.</p>
+<h2 id="homebrew-on-the-switch">Homebrew on the switch</h2>
+<p>The current state of homebrew on the switch is inconvient to say the least. Homebrew currently works through an exploit called Fusée Gelée.
+Which works by exploiting the boot process of vulnerable Tegra SoC (system on a chip) CPU. Which are dual core ARM cpus and happen to be used in the switch.
+Since we are exploiting the boot process of the processor there is no presisting of the exploit after a reboot.
+So if your switch ever turns off you&rsquo;ll` need to do the exploit over again.
+Which consists of putting your switch into recovery mode by grounding specific pins on switch&rsquo;s joycon rail
+and then holding the volume up button and the power button while the switch is turned off.</p>
+<p>After doing this you use a Fusée Gelée injector on a computer connected to the switch&rsquo;s usbc port.
+Using the injector you inject the Fusée Gelée
+payload along with any code that you want executed after the exploitable boot process, such as boot loader or straight to custom firmware.</p>
+<p>I got as far as being able to boot into atmosphere (a popular homebrew OS for switch), and attempted to download the melon DS emulator from the homebrew store.<br>
+But for Melon DS to work you need a dump of a nintendo DS&rsquo;s BIOS/firmware, which doesn&rsquo;t come with the homebrew download (because it would be illegal to do so).<br>
+Even after all of that, the emulator isn&rsquo;t all that great. And it&rsquo;s commly known that melon DS and other emulators don&rsquo;t run well on the switch.</p>
+<blockquote>
+<p>Keep in mind that all of the aforementioned emulators do not currently support a hardware renderer and many games run at slow speeds.
+You can however overclock the Switch&rsquo;s CPU up to 1.75 GHz to achieve somewhat acceptable framerates.</p>
+</blockquote>
+<p>Oh, I forgot to mention that if your switch comes into contact with nintendo servers while doing homebrew stuff you run the risk of banning your switch.
+Leaving your switch unable to access any nintendo online features or the estore.
+And the only way to recover from that is to back up your switch&rsquo;s eMMC (embeded multi-media controller) and some authentication keys.
+Which would be rather inconveint for me since I want to grab the pokemon snap remake coming out this month.</p>
+<h3 id="homebrew-on-nds">Homebrew on NDS</h3>
+<p>If I had a NDS I could play gameboy / NDS cartrages directly on the device and get homebrew software to play ROM hacks on the SD card.<br>
+Which would be nice, and there should be no problem running the games since they were designed to run on that hardware.
+But I don&rsquo;t have a NDS to try to homebrew on at the moment,
+and also the NDS wouldn&rsquo;t exactly be my first choice since it&rsquo;s not usbc and doesn&rsquo;t support SD cards larger than 2 GB (or 32GB for SDHC).</p>
+<h2 id="rg350-retro-handheld">RG350 retro handheld</h2>
+<p>My first attempt at finding a device that would allow me to re-experiance the golden age of pokemon games
+is a rasberry pi with a 3.5&quot; ips screen, plastic/metal case, and 3D printed buttons.
+It has good support for expanding storage, and has usbc charging/data transfer.
+However, it&rsquo;s incapable of charging from anything that outputs more than 5 amps, and in my experiance suffers other battery issues.
+To resolve I had to unplug and replug the battery back in. All in all it&rsquo;s not the worst, and is somewhat useful.
+But it won&rsquo;t play DS games well, so I continued to search for a device that could do gameboy games and NDS games.</p>
+<h3 id="analouge-pocket">Analouge Pocket</h3>
+<p>Im looking forward to Analouge&rsquo;s &lsquo;pocket&rsquo; device, and I hope that I can get my hands on one when they do the next round of production
+(preoders for the batch shipping in October 2021 sold out in 16 minutes).
+Its got usbc charging, a micro-sd slot, and HDMI output all in a slick designed Gameboy like handheld console.
+It won&rsquo;t play DS games of course but I&rsquo;d definitely get it just so I can play old Gameboy games on it.</p>
+<h2 id="simple-solution">Simple Solution</h2>
+<p>The solution that I&rsquo;ve ended up with using the most for now is just hooking up my PC up to the TV in my living room through a long HDMI cable I happened to have.
+I play from the couch using a wireless xbox controller that I got from my Oculus, and it&rsquo;s as simple as that.
+I can play DS games, gameboy, or even gamecube games, including any hacked variants of those games.
+But I can&rsquo;t exactly take my TV to the park to play pokemon like I did as kid (you know after they added backlight screens).
+This will work for now but I will continue to search for a better solution.</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>dual-booting</title>
+			<link>https://blog.smantic.dev/posts/dual-boot/</link>
+			<pubDate>Tue, 06 Apr 2021 22:32:51 -0500</pubDate>
+			
+			<guid>https://blog.smantic.dev/posts/dual-boot/</guid>
+			<description>This is a guide to a bare metal dual boot of Windows 10 and Ubuntu. No emulation, or virtualization. Most of this guide comes from my personal experiance over several years of having a dual boot install, any pain points that I highlight are because I have experianced them myself. Obiviously, this is not
+a complete resource of all the information you might need to do this, but this post does have all the information you mighy need.</description>
+			<content type="html"><![CDATA[<p>This is a guide to a bare metal dual boot of Windows 10 and Ubuntu. No emulation, or virtualization.
+Most of this guide comes from my personal experiance over several years of having a dual boot install,
+any pain points that I highlight are because I have experianced them myself. Obiviously, this is not<br>
+a complete resource of all the information you might need to do this, but this post does have all the information you mighy need.</p>
+<p>Notice that I say that it is a dual boot of Windows 10, and Ubuntu (windows first).
+Unfortuantly the Windows installer has a terrible habit of destroying
+any other operating system<!-- raw HTML omitted --><!-- raw HTML omitted -->1<!-- raw HTML omitted --><!-- raw HTML omitted -->
+that may be existing peacefully on the computer that it is being installed on.
+The solution to this? Simple, just install windows first.</p>
+<h2 id="installing-windows">Installing Windows</h2>
+<p>Thankfully, thats not an issue for you because you are an intelligent, responsible human being that will avoid uneccessary complications when possible.
+Here is what you will need to install windows.
+A flash drive with atleast 8gb of space and a windows computer with atleast 8gb of space on the C:/ drive.
+Yes you need a windows computer to install windows.
+Once you have those go ahead and download and run window&rsquo;s installation media.
+Again make sure there is plenty of storage both on the flashdrive and computer that you are running the installation media on because other wise the installation media will fail!! <!-- raw HTML omitted --></p>
+<p>Depending on what you are installing onto you may need to familarlize yourself with the partions on your system.
+When are doing the windows installation, the installer is not going to be helpful to identify what partition is which.
+If you are on windows open up the Disk Management program, and if you are linux open up Gparted or whatever your distro uses to do Partition Management.
+You will want to identify what drive you want to install onto, and what partions you will need or want to delete ( format ).
+If you are installing onto brand new drives with no existing partions then dont worry about it. <!-- raw HTML omitted --></p>
+<p>After closing your 5 tabs of reddit that you opened after getting bored waiting for the installation media; go ahead and plug that flash drive into the computer you want to dual boot on.
+Restart your computer now. But before you do that look up what your bios key is &mdash;  too late? Quick! Spam f2 and delete vigoriously.
+Nice. Now click around your bios interface randomly for 10 minutes until you find where you can select what device to boot into.
+Select the one that has the brand name of your flash drive and UEFI in the name of the partition.<!-- raw HTML omitted --></p>
+<p>Nice! Now its time to break shit!!
+Select the advanced installation option when you get to it because we don&rsquo;t trust windows to anything right.
+This will bring up a view of the different partions on your system.
+Hopefully you identified which drive you wanted to install on before hand.<!-- raw HTML omitted --><!-- raw HTML omitted -->7<!-- raw HTML omitted --><!-- raw HTML omitted -->
+Go ahead and delete any partitions you don&rsquo;t need anymore (such as an old windows partion, or old linux partions ).
+After you have created some free space on the drive you want to install on (i.e. your SSD, not the hard disk),
+select the free space to install into.
+After that Cortona will attempt to slide in your DMs
+and start ask you a serries of invasive questions such as your name, password, location, and your mother&rsquo;s maiden name.
+Make sure to select no, or skip whenever possible otherwise windows might server you adds.</p>
+<h3 id="installing-windows-and-linux-on-the-same-device">Installing Windows and Linux on the Same Device</h3>
+<p>This part is for the really dense people out there that will inevitably want to have their linux partion and their windows on the same SSD for those fast boot times.
+Or you just only have 1 drive to install anything on.
+This idea is folish because the minute that Microsoft decides they want to change their boot process,
+or even decide it&rsquo;s a &ldquo;good idea&rdquo; to overwrite the master boot record again which will break your GRUB bootlooader.
+Microsoft could change other things, and possibly even brick the linux kernal that happened to be on the same drive.
+My linux kernal went into a panic at the sight of windows attempting to update, and my windows update is stuck in a forever fail loop.
+But if you want to continue down this accursed path you will want to open window&rsquo;s Disk management program so that you can resize your windows partion to make room for linux. <!-- raw HTML omitted --></p>
+<h2 id="installing-linux">Installing Linux</h2>
+<!-- raw HTML omitted -->
+<p>After this boot into your bios again and select to boot into the flash drive.<br>
+You should be greated by a friendly GRUB interface, select the Ubuntu installation.
+You will get the option to to connect to the interent to download extra propreitary Software/Drivers,
+I&rsquo;d recomend doing that as it&rsquo;s convient and free software is a conversation for another day.
+I&rsquo;d esspically recomend doing this if you are running a computer with a Nividia graphics card
+or if your on a laptop that has just recently came into the market.</p>
+<p>When you get to the point where the Installer asks how you want to install, select &ldquo;Something else&rdquo;, instead of the other options. We are going to manually create the partitions to ensure the partions are set up how we want them to be.<!-- raw HTML omitted --><br>
+These are the partitions that we will want to have, enter them in this order.</p>
+<!-- raw HTML omitted -->
+<p>The Ubuntu installer can do this for you, but depending on what you are installing on top of,
+it might not be an ideal set up, or it might install along side your windows partition even if room on that drive is tight.
+I should also mention that you can elect to have root and /home in the same partition,
+but some seperation between your files and the operating system can be pragmatic
+for when it comes time to upgrade Ubuntu your /home parition wont be touched.</p>
+<p>Once you&rsquo;re finished go ahead and reboot into your bios, ensure that the drive you installed linux on is listed first in the boot order.
+After that, select to boot into windows, and then boot into linux again.
+This is to just make sure your both of your installations work, and that they aren&rsquo;t going to brick each other after booting in one of them.
+After booting into windows your GRUB should recognize windows as an option to boot into now, so you won&rsquo;t need to go into the BIOS everytime you want to boot into windows.</p>
+<p>And thats it! All done! Hopefullly, everything went smoothly for you, otherwise don&rsquo;t be afraid to ask for help.
+Do your best to identify what the problem may be and other people will do their best to help you solve it!</p>
+<h1 id="annotations">Annotations</h1>
+<h3 id="1---windows-installer">1 - Windows installer</h3>
+<p>I may of over exaggerated a bit. Windows will just overwrite the the master boot record on the drive, because the master boot record should show how to boot onto windows.
+Unfortuantely, this makes it making much more difficult to boot into your ubuntu partition again.<br>
+To do so you will have to do a boot-repair, which can be difficult if you&rsquo;re not sure what you&rsquo;re doing, and also not really gauranteed to work.
+So just install linux last! To start the boot-repair process you will need to execute these commands:</p>
+<pre><code>sudo add-apt-repository ppa:yannubuntu/boot-repair 
+sudo apt-get update
+sudo apt-get install boot-repair
+</code></pre><h3 id="2---partition-sizes">2 - Partition Sizes</h3>
+<p>When creating custom paritions like this it&rsquo;s important to understand how large the partitions need to be inorder to
+conserve space by not makeing extra large partitions, as well as making sure the paritions have enough space for their intended use.</p>
+<!-- raw HTML omitted -->
+<h3 id="3---order-of-partions">3 - Order of Partions</h3>
+<p>Interestingly enough the order of the paritions that we put in might matter. I didn&rsquo;t know about this before writing this guide, so I&rsquo;ve included some interesting findings.</p>
+<!-- raw HTML omitted -->
+<h3 id="4---seperate-home-directory">4 - Seperate Home directory</h3>
+<p>If you plan on storing a lot of things in your /home directory (photo albums or whatever),
+it may be prudent to have a seperate /home partition so you can safely upgrade your system (or even change distros) without worring about losing your data stored in /home.
+Also, I believe it&rsquo;s possible to have 2 distros on one system, that share a /home partition, so you can swap between your arch distro, and ubuntu or whatever
+and have access to the same files, altho I can&rsquo;t gaurentee this will work perfectly. <!-- raw HTML omitted --></p>
+<h3 id="5---what-version-to-download">5 - What version to download?</h3>
+<p>In most cases you will want to want to use the latest long term support (LTS)
+version as version provide great stablity, infrequent updates, you know&hellip; plenty of support.
+There are some cases in which you may want to install the newer version of Ubuntu however.
+One of those cases is when you have purchased newer hardware that only newer versions of the linux kernal or
+newer versions of the distro contains fixes needed for that piece of hardware to operate correctly.
+Specifically this should only be a problem for laptops. Consult <!-- raw HTML omitted -->this<!-- raw HTML omitted --> or
+any up to date compatablity list to see if your hardware is compatible.</p>
+<h3 id="6---windows-update-forever-fail-loop">6 - Windows Update Forever Fail Loop</h3>
+<p>For some reason
+it&rsquo;s possible for your windows update to corrupt, and fail everytime you attempt to update.
+My best guess is that the presence of Linux on the same drive as linux scares windows so it breaks and abandon the update at the sight of a
+partion that it doesnt recognize.
+This wouldn&rsquo;t be so bad if Microsoft wasn&rsquo;t so aggressive about updating windows,
+some older versions of windows 10 you couldn&rsquo;t turn your computer off without going through the update process if there is an update pending.
+If you do install windows and linux on the same drive save you self some grief and disable updates completely.
+You can acomplish this by opening up the &ldquo;Services&rdquo; program, finding windows update, select the properties of the service, and change startup type to &ldquo;disabled&rdquo;.
+Although it&rsquo;s possible by the time you are reading this, Microsoft has changed how this is done, and this is no help to you. Sorry.</p>
+<h3 id="7--identifing-your-disks">7 -Identifing your disks</h3>
+<p>If you are in the middle of an installation of windows and you&rsquo;re not sure which drive is which it&rsquo;s still possible to figure out.<br>
+The easiest way to go about it if you are like me is to add up all the space on a particular drive to identify what drive it is. <br>
+The space is identified as bytes instead of Gigabytes, so you will need to divide the total by 10 9 in order to get what the size is in gigabytes.
+Hopefully this should help you identify what drive is which, assuming you remember what the size of your drives are.
+There are probably other ways to go about it, but is it really worth it if it&rsquo;s more work than this?</p>
+]]></content>
+		</item>
+		
+	</channel>
+</rss>
