@@ -74,5 +74,5 @@ It won't play DS games of course but I'd definitely get it just so I can play ol
 The solution that I've ended up with using the most for now is just hooking up my PC up to the TV in my living room through a long HDMI cable I happened to have. 
 I play from the couch using a wireless xbox controller that I got from my Oculus, and it's as simple as that. 
 I can play DS games, gameboy, or even gamecube games, including any hacked variants of those games.
-But I can't exactly take my TV to the park to play pokemon like I did as kid (you know after they added backlight screens). 
-This will work for now but I will continue to search for a better solution.  
+But I can't exactly take my TV to the park to play pokemon like I did as kid (you know after they added backlight screens).
+This will work for now but I will continue to search for a better solution. 

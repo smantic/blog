@@ -4,11 +4,11 @@ defaultContentLanguage = "en"
 title = "smantics"
 theme = "hermit"
 
-# enableGitInfo = true
+enableGitInfo = true
 pygmentsCodefences  = true
 pygmentsUseClasses  = true
 
-# hasCJKLanguage = true  # If Chinese/Japanese/Korean is your main content language, enable this to make wordCount works right.
+# hasCJKLanguage = false  # If Chinese/Japanese/Korean is your main content language, enable this to make wordCount works right.
 rssLimit = 10  # Maximum number of items in the RSS feed.
 copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
 enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
@@ -46,7 +46,7 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
   # gitUrl = "https://github.com/username/repository/commit/"
 
   # Toggling this option needs to rebuild SCSS, requires Hugo extended version
-  justifyContent = false  # Set "text-align: justify" to `.content`.
+  justifyContent =  false  # Set "text-align: justify" to `.content`.
 
   relatedPosts = false  # Add a related content section to all single posts page
 
@@ -59,10 +59,9 @@ enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/func
   # Check https://github.com/Track3/hermit#social-icons for more info.
   [[params.social]]
     name = "github"
-    url = "https://github.com/"
+    url = "https://github.com/smantic"
 
 [menu]
-
   [[menu.main]]
     name = "Posts"
     url = "posts/"
