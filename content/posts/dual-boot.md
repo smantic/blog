@@ -162,7 +162,7 @@ version as version provide great stablity, infrequent updates, you know... plent
 There are some cases in which you may want to install the newer version of Ubuntu however. 
 One of those cases is when you have purchased newer hardware that only newer versions of the linux kernal or
 newer versions of the distro contains fixes needed for that piece of hardware to operate correctly.
-Specifically this should only be a problem for laptops. Consult [this]("https://certification.ubuntu.com/desktop") or
+Specifically this should only be a problem for laptops. Consult [this](https://certification.ubuntu.com/desktop) or
 any up to date compatablity list to see if your hardware is compatible. 
 
 ### 6 - Windows Update Forever Fail Loop  
