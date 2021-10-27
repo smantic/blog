@@ -6,8 +6,167 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Wed, 07 Apr 2021 17:37:50 -0500</lastBuildDate>
+		<lastBuildDate>Tue, 26 Oct 2021 21:02:11 -0500</lastBuildDate>
 		<atom:link href="https://blog.smantic.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>struct-to-map</title>
+			<link>https://blog.smantic.dev/posts/struct-to-map/</link>
+			<pubDate>Tue, 26 Oct 2021 21:02:11 -0500</pubDate>
+			
+			<guid>https://blog.smantic.dev/posts/struct-to-map/</guid>
+			<description>Occasionally in go we want convert our structured data into an unstructured format, such as a map[string]interface{}
+for struct like:
+type Foo struct { A Bar `json:&amp;#34;a&amp;#34;` B Bar `json:&amp;#34;b&amp;#34;` C Bar `json:&amp;#34;c&amp;#34;` D Bar `json:&amp;#34;d&amp;#34;` E Bar `json:&amp;#34;e&amp;#34;` F int `json:&amp;#34;f&amp;#34;` G uint `json:&amp;#34;g&amp;#34;` H string `json:&amp;#34;h&amp;#34;` } type Bar struct { Bar string `json:&amp;#34;bar&amp;#34;` } There are a couple ways we can convert it into a map.
+ manually  func base(foo Foo) map[string]interface{} { result := make(map[string]interface{}) result[&amp;#34;A&amp;#34;] = foo.</description>
+			<content type="html"><![CDATA[<p>Occasionally in go we want convert our structured data into an unstructured format, such as a <code>map[string]interface{}</code></p>
+<p>for struct like:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Foo</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">A</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;a&#34;`</span>
+	<span class="nx">B</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;b&#34;`</span>
+	<span class="nx">C</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;c&#34;`</span>
+	<span class="nx">D</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;d&#34;`</span>
+	<span class="nx">E</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;e&#34;`</span>
+	<span class="nx">F</span> <span class="kt">int</span>    <span class="s">`json:&#34;f&#34;`</span>
+	<span class="nx">G</span> <span class="kt">uint</span>   <span class="s">`json:&#34;g&#34;`</span>
+	<span class="nx">H</span> <span class="kt">string</span> <span class="s">`json:&#34;h&#34;`</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Bar</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Bar</span> <span class="kt">string</span> <span class="s">`json:&#34;bar&#34;`</span>
+<span class="p">}</span>
+</code></pre></div><p>There are a couple ways we can convert it into a map.</p>
+<ol>
+<li>manually</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">base</span><span class="p">(</span><span class="nx">foo</span> <span class="nx">Foo</span><span class="p">)</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+
+	<span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>
+
+	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;A&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">A</span>
+	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;B&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">B</span>
+	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;C&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">C</span>
+	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;D&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">D</span>
+	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;E&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">E</span>
+	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;F&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">F</span>
+	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;G&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">G</span>
+	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;H&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">H</span>
+	<span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div><p>just manually assigning the fields and keys.</p>
+<ol start="2">
+<li>reflection</li>
+</ol>
+<p>We can use reflection to generically get the name of the struct fields and their data.</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">reflec</span><span class="p">(</span><span class="nx">foo</span> <span class="nx">Foo</span><span class="p">)</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+
+	<span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>
+
+	<span class="nx">val</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">ValueOf</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
+	<span class="nx">typ</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">TypeOf</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">val</span><span class="p">.</span><span class="nf">NumField</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">field</span> <span class="o">:=</span> <span class="nx">val</span><span class="p">.</span><span class="nf">Field</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+		<span class="nx">result</span><span class="p">[</span><span class="nx">typ</span><span class="p">.</span><span class="nf">Field</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">Name</span><span class="p">]</span> <span class="p">=</span> <span class="nx">field</span><span class="p">.</span><span class="nf">Interface</span><span class="p">()</span>
+	<span class="p">}</span>
+
+	<span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div><ol start="3">
+<li><code>encoding/json</code> hack</li>
+</ol>
+<p>A more established go dev may be tempted to try the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">hack</span><span class="p">(</span><span class="nx">foo</span> <span class="nx">Foo</span><span class="p">)</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+
+	<span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>
+
+	<span class="nx">bytes</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
+	<span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+
+	<span class="k">return</span> <span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div><p>Much shorter than option 1, but we&rsquo;ll find it&rsquo;s much less efficient.</p>
+<hr>
+<h2 id="results">Results</h2>
+<p>We can benchmark these functions:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// to elim some compiler optimizations
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">result</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span>
+
+<span class="kd">func</span> <span class="nf">BenchmarkBase</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">m</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span>
+	<span class="k">for</span> <span class="nx">n</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">n</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span> <span class="nx">n</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">m</span> <span class="p">=</span> <span class="nf">base</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="nx">result</span> <span class="p">=</span> <span class="nx">m</span>
+<span class="p">}</span>
+</code></pre></div><p>Benchmarking on my machine I get results like:</p>
+<pre><code>$ go test -bench=. -benchtime=60s
+
+goos: linux
+goarch: amd64
+pkg: github.com/smantic/bench-struct-to-map
+cpu: Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz
+BenchmarkBase-8      	133096639	       538.1 ns/op
+BenchmarkHack-8      	47031236	      1591 ns/op
+BenchmarkReflect-8   	72736426	       965.5 ns/op
+PASS
+ok  	github.com/smantic/bench-struct-to-map	273.862s
+</code></pre><p>We see that the option 1 has a speedup of ~2x compared to the reflect method, and ~3x speedup when compared to the encoding/json hack.</p>
+<p>Option 1 is probably faster due to the following ideas:</p>
+<ol>
+<li>runtime reflection is slow</li>
+<li>encoding/json has extra logic for json handling
+<ul>
+<li>we are also doing an extra step to convert the struct to a byte array of json data.</li>
+<li>encoding/json uses reflection to do this in the first place.</li>
+</ul>
+</li>
+</ol>
+<p>The base option is just assigning entries in the map, and lets the compiler handle the rest.</p>
+<p>Makes me feel a bit better about writing out the struct mapping by hand!</p>
+<p>code : <a href="https://github.com/smantic/bench-struct-to-map">https://github.com/smantic/bench-struct-to-map</a></p>
+<hr>
+<h3 id="other-libraries">Other Libraries</h3>
+<p>If you google &ldquo;go struct to map&rdquo; you are likely to stumble upon <a href="https://stackoverflow.com/questions/23589564/function-for-converting-a-struct-to-map-in-golang">this SO post</a>.<br>
+The accepted answer mentions <a href="https://github.com/fatih/structs">fatih/structs</a>. However, this project still uses reflection and has been unmaintained for years.</p>
+<p>Any other project will likely have performance worse or close to the reflection method, since they will all be using reflection underneath.</p>
+<p>You may also find <a href="https://github.com/mitchellh/mapstructure">mitchellh/mapstructure</a>, which still uses reflection.<br>
+For fun here&rsquo;s the benchmark for that.</p>
+<pre><code>$ go test -bench=Mitchellh -benchtime=60s
+
+goos: linux
+goarch: amd64
+pkg: github.com/smantic/bench-struct-to-map
+cpu: Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz
+BenchmarkMitchellh-8   	11661878	      6298 ns/op
+PASS
+ok  	github.com/smantic/bench-struct-to-map	79.679s
+</code></pre><p>¯\_(ツ)_/¯</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>reddit</title>
+			<link>https://blog.smantic.dev/posts/reddit/</link>
+			<pubDate>Sat, 18 Sep 2021 16:05:12 -0500</pubDate>
+			
+			<guid>https://blog.smantic.dev/posts/reddit/</guid>
+			<description>is a link aggregator and thats all it should be.
+Through a system of anonymity and fake internet points reddit brings attention to things that people generally find interesting or important around a particular topic.
+It&amp;rsquo;s not a discussion board. If you debate people on reddit you look naive. You are trying to convince a random person behind a keyboard of a particular viewpoint. You have no idea who that person is.</description>
+			<content type="html"><![CDATA[<p>is a link aggregator and thats all it should be.</p>
+<p>Through a system of anonymity and fake internet points reddit brings attention to things that people generally find interesting or important around a particular topic.</p>
+<p>It&rsquo;s not a discussion board. If you debate people on reddit you look naive. You are trying to convince a random person behind a keyboard of a particular viewpoint. You have no idea
+who that person is. For all you know it could be a bot, or someone just looking to rattle someone (i.e. a troll).</p>
+<p>It&rsquo;s not a community, you may gather in subreddits around topics you find interesting; but any opinions or viewpoints should be taken with a grain of salt, as they may just be trying to promote a way of thinking, appeal to the masses (for that sweet karma) or try to rile up a particular audience.</p>
+<p>These statements can be reduced to the following:</p>
+<blockquote>
+<p>reddit is not a source of truth</p>
+</blockquote>
+<p>Truth on reddit is biased by majority rule and anonymity. There are no authorities on subject matters, and only the agreeable opinions are accepted.</p>
+<p>Reddit&rsquo;s system of anonymity and fake internet points makes the website good for finding interesting or important things relevant to a group of people, but that&rsquo;s about it.
+So that is all it should be used for.</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>retro-gaming-devices</title>
@@ -212,7 +371,7 @@ version as version provide great stablity, infrequent updates, you know&hellip; 
 There are some cases in which you may want to install the newer version of Ubuntu however.
 One of those cases is when you have purchased newer hardware that only newer versions of the linux kernal or
 newer versions of the distro contains fixes needed for that piece of hardware to operate correctly.
-Specifically this should only be a problem for laptops. Consult <a href="%22https://certification.ubuntu.com/desktop%22">this</a> or
+Specifically this should only be a problem for laptops. Consult <a href="https://certification.ubuntu.com/desktop">this</a> or
 any up to date compatablity list to see if your hardware is compatible.</p>
 <h3 id="6---windows-update-forever-fail-loop">6 - Windows Update Forever Fail Loop</h3>
 <p>For some reason it&rsquo;s possible for your windows update to corrupt, and fail everytime you attempt to update.

@@ -6,6 +6,34 @@
     <description>Recent content in Tags on smantics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://blog.smantic.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 26 Oct 2021 21:02:11 -0500</lastBuildDate><atom:link href="https://blog.smantic.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>benchmark</title>
+      <link>https://blog.smantic.dev/tags/benchmark/</link>
+      <pubDate>Tue, 26 Oct 2021 21:02:11 -0500</pubDate>
+      
+      <guid>https://blog.smantic.dev/tags/benchmark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://blog.smantic.dev/tags/go/</link>
+      <pubDate>Tue, 26 Oct 2021 21:02:11 -0500</pubDate>
+      
+      <guid>https://blog.smantic.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>social</title>
+      <link>https://blog.smantic.dev/tags/social/</link>
+      <pubDate>Sat, 18 Sep 2021 16:05:12 -0500</pubDate>
+      
+      <guid>https://blog.smantic.dev/tags/social/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

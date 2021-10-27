@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>go on smantics</title>
+    <link>https://blog.smantic.dev/tags/go/</link>
+    <description>Recent content in go on smantics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 26 Oct 2021 21:02:11 -0500</lastBuildDate><atom:link href="https://blog.smantic.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>struct-to-map</title>
+      <link>https://blog.smantic.dev/posts/struct-to-map/</link>
+      <pubDate>Tue, 26 Oct 2021 21:02:11 -0500</pubDate>
+      
+      <guid>https://blog.smantic.dev/posts/struct-to-map/</guid>
+      <description>Occasionally in go we want convert our structured data into an unstructured format, such as a map[string]interface{}
+for struct like:
+type Foo struct { A Bar `json:&amp;#34;a&amp;#34;` B Bar `json:&amp;#34;b&amp;#34;` C Bar `json:&amp;#34;c&amp;#34;` D Bar `json:&amp;#34;d&amp;#34;` E Bar `json:&amp;#34;e&amp;#34;` F int `json:&amp;#34;f&amp;#34;` G uint `json:&amp;#34;g&amp;#34;` H string `json:&amp;#34;h&amp;#34;` } type Bar struct { Bar string `json:&amp;#34;bar&amp;#34;` } There are a couple ways we can convert it into a map.
+ manually  func base(foo Foo) map[string]interface{} { result := make(map[string]interface{}) result[&amp;#34;A&amp;#34;] = foo.</description>
+    </item>
+    
+  </channel>
+</rss>

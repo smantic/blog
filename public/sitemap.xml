@@ -2,21 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.smantic.dev/readme/</loc>
-    <lastmod>2021-08-14T14:15:35-05:00</lastmod>
+    <loc>https://blog.smantic.dev/tags/benchmark/</loc>
+    <lastmod>2021-10-26T23:30:54-05:00</lastmod>
+  </url><url>
+    <loc>https://blog.smantic.dev/tags/go/</loc>
+    <lastmod>2021-10-26T23:30:54-05:00</lastmod>
   </url><url>
     <loc>https://blog.smantic.dev/posts/</loc>
-    <lastmod>2021-08-14T20:11:05-05:00</lastmod>
+    <lastmod>2021-10-26T23:30:54-05:00</lastmod>
+  </url><url>
+    <loc>https://blog.smantic.dev/</loc>
+    <lastmod>2021-10-26T23:30:54-05:00</lastmod>
+  </url><url>
+    <loc>https://blog.smantic.dev/posts/struct-to-map/</loc>
+    <lastmod>2021-10-26T23:30:54-05:00</lastmod>
+  </url><url>
+    <loc>https://blog.smantic.dev/tags/</loc>
+    <lastmod>2021-10-26T23:30:54-05:00</lastmod>
+  </url><url>
+    <loc>https://blog.smantic.dev/posts/reddit/</loc>
+    <lastmod>2021-10-13T18:04:38-05:00</lastmod>
+  </url><url>
+    <loc>https://blog.smantic.dev/tags/social/</loc>
+    <lastmod>2021-10-13T18:04:38-05:00</lastmod>
+  </url><url>
+    <loc>https://blog.smantic.dev/readme/</loc>
+    <lastmod>2021-08-14T14:15:35-05:00</lastmod>
   </url><url>
     <loc>https://blog.smantic.dev/posts/retro-gaming/</loc>
     <lastmod>2021-08-14T20:11:05-05:00</lastmod>
   </url><url>
-    <loc>https://blog.smantic.dev/</loc>
-    <lastmod>2021-08-14T20:11:05-05:00</lastmod>
-  </url><url>
     <loc>https://blog.smantic.dev/posts/dual-boot/</loc>
-    <lastmod>2021-08-14T20:11:05-05:00</lastmod>
-  </url><url>
-    <loc>https://blog.smantic.dev/tags/</loc>
+    <lastmod>2021-08-15T14:53:43-05:00</lastmod>
   </url>
 </urlset>
