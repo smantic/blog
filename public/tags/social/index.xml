@@ -2,21 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>social on smantics</title>
+    
+    
+    
     <link>https://blog.smantic.dev/tags/social/</link>
     <description>Recent content in social on smantics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 18 Sep 2021 16:05:12 -0500</lastBuildDate><atom:link href="https://blog.smantic.dev/tags/social/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Sep 2021 16:05:12 -0500</lastBuildDate>
+    
+	<atom:link href="https://blog.smantic.dev/tags/social/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>reddit</title>
       <link>https://blog.smantic.dev/posts/reddit/</link>
       <pubDate>Sat, 18 Sep 2021 16:05:12 -0500</pubDate>
       
       <guid>https://blog.smantic.dev/posts/reddit/</guid>
-      <description>is a link aggregator and thats all it should be.
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          is a link aggregator and thats all it should be.
 Through a system of anonymity and fake internet points reddit brings attention to things that people generally find interesting or important around a particular topic.
-It&amp;rsquo;s not a discussion board. If you debate people on reddit you look naive. You are trying to convince a random person behind a keyboard of a particular viewpoint. You have no idea who that person is.</description>
+It&amp;rsquo;s not a discussion board. If you debate people on reddit you look naive. You are trying to convince a random person behind a keyboard of a particular viewpoint. You have no idea who that person is.
+          
+        
+        </description>
     </item>
     
   </channel>

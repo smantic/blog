@@ -1,28 +1,52 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
+  <head>
+    
+      <title>
+        struct-to-map ::
+        smantics — truth through language
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Occasionally in go we want convert our structured data into an unstructured format, such as a map[string]interface{}
+for struct like:
+type Foo struct { A Bar `json:&amp;#34;a&amp;#34;` B Bar `json:&amp;#34;b&amp;#34;` C Bar `json:&amp;#34;c&amp;#34;` D Bar `json:&amp;#34;d&amp;#34;` E Bar `json:&amp;#34;e&amp;#34;` F int `json:&amp;#34;f&amp;#34;` G uint `json:&amp;#34;g&amp;#34;` H string `json:&amp;#34;h&amp;#34;` } type Bar struct { Bar string `json:&amp;#34;bar&amp;#34;` } There are a couple ways we can convert it into a map.
+ manually  func base(foo Foo) map[string]interface{} { result := make(map[string]interface{}) result[&amp;#34;A&amp;#34;] = foo."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.smantic.dev/posts/struct-to-map/" />
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#494f5c">
-	<meta name="msapplication-TileColor" content="#494f5c">
-<meta itemprop="name" content="struct-to-map">
-<meta itemprop="description" content="Occasionally in go we want convert our structured data into an unstructured format, such as a map[string]interface{}
-for struct like:
-type Foo struct { A Bar `json:&#34;a&#34;` B Bar `json:&#34;b&#34;` C Bar `json:&#34;c&#34;` D Bar `json:&#34;d&#34;` E Bar `json:&#34;e&#34;` F int `json:&#34;f&#34;` G uint `json:&#34;g&#34;` H string `json:&#34;h&#34;` } type Bar struct { Bar string `json:&#34;bar&#34;` } There are a couple ways we can convert it into a map.
- manually  func base(foo Foo) map[string]interface{} { result := make(map[string]interface{}) result[&#34;A&#34;] = foo."><meta itemprop="datePublished" content="2021-10-26T21:02:11-05:00" />
-<meta itemprop="dateModified" content="2021-10-26T23:30:54-05:00" />
-<meta itemprop="wordCount" content="494">
-<meta itemprop="keywords" content="go,benchmark," /><meta property="og:title" content="struct-to-map" />
-<meta property="og:description" content="Occasionally in go we want convert our structured data into an unstructured format, such as a map[string]interface{}
-for struct like:
-type Foo struct { A Bar `json:&#34;a&#34;` B Bar `json:&#34;b&#34;` C Bar `json:&#34;c&#34;` D Bar `json:&#34;d&#34;` E Bar `json:&#34;e&#34;` F int `json:&#34;f&#34;` G uint `json:&#34;g&#34;` H string `json:&#34;h&#34;` } type Bar struct { Bar string `json:&#34;bar&#34;` } There are a couple ways we can convert it into a map.
- manually  func base(foo Foo) map[string]interface{} { result := make(map[string]interface{}) result[&#34;A&#34;] = foo." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.smantic.dev/posts/struct-to-map/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-10-26T21:02:11-05:00" />
-<meta property="article:modified_time" content="2021-10-26T23:30:54-05:00" />
+
+
+
+
+<link rel="stylesheet" href="https://blog.smantic.dev/assets/style.css" />
+
+<link rel="stylesheet" href="https://blog.smantic.dev/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="https://blog.smantic.dev/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="https://blog.smantic.dev/img/favicon.png" />
+
+
+<link href="https://blog.smantic.dev/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://blog.smantic.dev/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://blog.smantic.dev/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://blog.smantic.dev/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://blog.smantic.dev/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://blog.smantic.dev/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="struct-to-map"/>
@@ -31,132 +55,223 @@ for struct like:
 type Foo struct { A Bar `json:&#34;a&#34;` B Bar `json:&#34;b&#34;` C Bar `json:&#34;c&#34;` D Bar `json:&#34;d&#34;` E Bar `json:&#34;e&#34;` F int `json:&#34;f&#34;` G uint `json:&#34;g&#34;` H string `json:&#34;h&#34;` } type Bar struct { Bar string `json:&#34;bar&#34;` } There are a couple ways we can convert it into a map.
  manually  func base(foo Foo) map[string]interface{} { result := make(map[string]interface{}) result[&#34;A&#34;] = foo."/>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>struct-to-map</title>
-	<link rel="stylesheet" href="https://blog.smantic.dev/css/style.min.f74778e3020c87c304fb5982e09b92ba63a5c7f202996d4c7283d6057acfe9c1.css" integrity="sha256-90d44wIMh8ME+1mC4JuSumOlx/ICmW1McoPWBXrP6cE=" crossorigin="anonymous">
-	
-</head>
-
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://blog.smantic.dev">smantics</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://blog.smantic.dev/posts/">Posts</a>
-				<a href="https://blog.smantic.dev/readme/">About</a>
-
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://github.com/smantic" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://blog.smantic.dev/posts/">Posts</a></li>
-			<li><a href="https://blog.smantic.dev/readme/">About</a></li>
-		</ul>
-	</div>
 
 
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Oct 26, 2021</span></div>
-				<h1>struct-to-map</h1>
-			</header>
-			<div class="content">
-				<p>Occasionally in go we want convert our structured data into an unstructured format, such as a <code>map[string]interface{}</code></p>
+<meta property="og:title" content="struct-to-map" />
+<meta property="og:description" content="Occasionally in go we want convert our structured data into an unstructured format, such as a map[string]interface{}
+for struct like:
+type Foo struct { A Bar `json:&#34;a&#34;` B Bar `json:&#34;b&#34;` C Bar `json:&#34;c&#34;` D Bar `json:&#34;d&#34;` E Bar `json:&#34;e&#34;` F int `json:&#34;f&#34;` G uint `json:&#34;g&#34;` H string `json:&#34;h&#34;` } type Bar struct { Bar string `json:&#34;bar&#34;` } There are a couple ways we can convert it into a map.
+ manually  func base(foo Foo) map[string]interface{} { result := make(map[string]interface{}) result[&#34;A&#34;] = foo." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.smantic.dev/posts/struct-to-map/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-26T21:02:11-05:00" />
+<meta property="article:modified_time" content="2021-10-31T19:47:31-05:00" /><meta property="og:site_name" content="smantics" />
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >smantics</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/readme">readme</a></li>
+        
+      
+        
+          <li><a href="/showcase">showcase</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/readme">readme</a></li>
+      
+    
+      
+        <li><a href="/showcase">showcase</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">struct-to-map</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2021-10-26
+        </span>
+
+        
+          
+        
+      
+
+      
+
+
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="https://blog.smantic.dev/tags/go/">#go</a>&nbsp;
+        
+          <a href="https://blog.smantic.dev/tags/benchmark/">#benchmark</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <p>Occasionally in go we want convert our structured data into an unstructured format, such as a <code>map[string]interface{}</code></p>
 <p>for struct like:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Foo</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">A</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;a&#34;`</span>
-	<span class="nx">B</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;b&#34;`</span>
-	<span class="nx">C</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;c&#34;`</span>
-	<span class="nx">D</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;d&#34;`</span>
-	<span class="nx">E</span> <span class="nx">Bar</span>    <span class="s">`json:&#34;e&#34;`</span>
-	<span class="nx">F</span> <span class="kt">int</span>    <span class="s">`json:&#34;f&#34;`</span>
-	<span class="nx">G</span> <span class="kt">uint</span>   <span class="s">`json:&#34;g&#34;`</span>
-	<span class="nx">H</span> <span class="kt">string</span> <span class="s">`json:&#34;h&#34;`</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Foo</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">A</span> <span style="color:#a6e22e">Bar</span>    <span style="color:#e6db74">`json:&#34;a&#34;`</span>
+	<span style="color:#a6e22e">B</span> <span style="color:#a6e22e">Bar</span>    <span style="color:#e6db74">`json:&#34;b&#34;`</span>
+	<span style="color:#a6e22e">C</span> <span style="color:#a6e22e">Bar</span>    <span style="color:#e6db74">`json:&#34;c&#34;`</span>
+	<span style="color:#a6e22e">D</span> <span style="color:#a6e22e">Bar</span>    <span style="color:#e6db74">`json:&#34;d&#34;`</span>
+	<span style="color:#a6e22e">E</span> <span style="color:#a6e22e">Bar</span>    <span style="color:#e6db74">`json:&#34;e&#34;`</span>
+	<span style="color:#a6e22e">F</span> <span style="color:#66d9ef">int</span>    <span style="color:#e6db74">`json:&#34;f&#34;`</span>
+	<span style="color:#a6e22e">G</span> <span style="color:#66d9ef">uint</span>   <span style="color:#e6db74">`json:&#34;g&#34;`</span>
+	<span style="color:#a6e22e">H</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;h&#34;`</span>
+}
 
-<span class="kd">type</span> <span class="nx">Bar</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">Bar</span> <span class="kt">string</span> <span class="s">`json:&#34;bar&#34;`</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Bar</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Bar</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;bar&#34;`</span>
+}
 </code></pre></div><p>There are a couple ways we can convert it into a map.</p>
 <ol>
 <li>manually</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">base</span><span class="p">(</span><span class="nx">foo</span> <span class="nx">Foo</span><span class="p">)</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">base</span>(<span style="color:#a6e22e">foo</span> <span style="color:#a6e22e">Foo</span>) <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{} {
 
-	<span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{})
 
-	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;A&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">A</span>
-	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;B&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">B</span>
-	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;C&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">C</span>
-	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;D&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">D</span>
-	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;E&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">E</span>
-	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;F&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">F</span>
-	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;G&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">G</span>
-	<span class="nx">result</span><span class="p">[</span><span class="s">&#34;H&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">H</span>
-	<span class="k">return</span> <span class="nx">result</span>
-<span class="p">}</span>
+	<span style="color:#a6e22e">result</span>[<span style="color:#e6db74">&#34;A&#34;</span>] = <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">A</span>
+	<span style="color:#a6e22e">result</span>[<span style="color:#e6db74">&#34;B&#34;</span>] = <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">B</span>
+	<span style="color:#a6e22e">result</span>[<span style="color:#e6db74">&#34;C&#34;</span>] = <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">C</span>
+	<span style="color:#a6e22e">result</span>[<span style="color:#e6db74">&#34;D&#34;</span>] = <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">D</span>
+	<span style="color:#a6e22e">result</span>[<span style="color:#e6db74">&#34;E&#34;</span>] = <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">E</span>
+	<span style="color:#a6e22e">result</span>[<span style="color:#e6db74">&#34;F&#34;</span>] = <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">F</span>
+	<span style="color:#a6e22e">result</span>[<span style="color:#e6db74">&#34;G&#34;</span>] = <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">G</span>
+	<span style="color:#a6e22e">result</span>[<span style="color:#e6db74">&#34;H&#34;</span>] = <span style="color:#a6e22e">foo</span>.<span style="color:#a6e22e">H</span>
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
 </code></pre></div><p>just manually assigning the fields and keys.</p>
 <ol start="2">
 <li>reflection</li>
 </ol>
 <p>We can use reflection to generically get the name of the struct fields and their data.</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">reflec</span><span class="p">(</span><span class="nx">foo</span> <span class="nx">Foo</span><span class="p">)</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">reflec</span>(<span style="color:#a6e22e">foo</span> <span style="color:#a6e22e">Foo</span>) <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{} {
 
-	<span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{})
 
-	<span class="nx">val</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">ValueOf</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
-	<span class="nx">typ</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">TypeOf</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
-	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">val</span><span class="p">.</span><span class="nf">NumField</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-		<span class="nx">field</span> <span class="o">:=</span> <span class="nx">val</span><span class="p">.</span><span class="nf">Field</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
-		<span class="nx">result</span><span class="p">[</span><span class="nx">typ</span><span class="p">.</span><span class="nf">Field</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">Name</span><span class="p">]</span> <span class="p">=</span> <span class="nx">field</span><span class="p">.</span><span class="nf">Interface</span><span class="p">()</span>
-	<span class="p">}</span>
+	<span style="color:#a6e22e">val</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#a6e22e">foo</span>)
+	<span style="color:#a6e22e">typ</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">TypeOf</span>(<span style="color:#a6e22e">foo</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">val</span>.<span style="color:#a6e22e">NumField</span>(); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">field</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">val</span>.<span style="color:#a6e22e">Field</span>(<span style="color:#a6e22e">i</span>)
+		<span style="color:#a6e22e">result</span>[<span style="color:#a6e22e">typ</span>.<span style="color:#a6e22e">Field</span>(<span style="color:#a6e22e">i</span>).<span style="color:#a6e22e">Name</span>] = <span style="color:#a6e22e">field</span>.<span style="color:#a6e22e">Interface</span>()
+	}
 
-	<span class="k">return</span> <span class="nx">result</span>
-<span class="p">}</span>
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
 </code></pre></div><ol start="3">
 <li><code>encoding/json</code> hack</li>
 </ol>
 <p>A more established go dev may be tempted to try the following:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">hack</span><span class="p">(</span><span class="nx">foo</span> <span class="nx">Foo</span><span class="p">)</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">hack</span>(<span style="color:#a6e22e">foo</span> <span style="color:#a6e22e">Foo</span>) <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{} {
 
-	<span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{})
 
-	<span class="nx">bytes</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">json</span><span class="p">.</span><span class="nf">Marshal</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
-	<span class="nx">json</span><span class="p">.</span><span class="nf">Unmarshal</span><span class="p">(</span><span class="nx">bytes</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+	<span style="color:#a6e22e">bytes</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">foo</span>)
+	<span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#a6e22e">bytes</span>, <span style="color:#a6e22e">result</span>)
 
-	<span class="k">return</span> <span class="nx">result</span>
-<span class="p">}</span>
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
 </code></pre></div><p>Much shorter than option 1, but we&rsquo;ll find it&rsquo;s much less efficient.</p>
 <hr>
-<h2 id="results">Results<a href="#results" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="results">Results</h2>
 <p>We can benchmark these functions:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// to elim some compiler optimizations
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">result</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// to elim some compiler optimizations
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}
 
-<span class="kd">func</span> <span class="nf">BenchmarkBase</span><span class="p">(</span><span class="nx">b</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">B</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">m</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{}</span>
-	<span class="k">for</span> <span class="nx">n</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">n</span> <span class="p">&lt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">N</span><span class="p">;</span> <span class="nx">n</span><span class="o">++</span> <span class="p">{</span>
-		<span class="nx">m</span> <span class="p">=</span> <span class="nf">base</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span>
-	<span class="p">}</span>
-	<span class="nx">result</span> <span class="p">=</span> <span class="nx">m</span>
-<span class="p">}</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkBase</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span>{}
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">n</span> &lt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>; <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">m</span> = <span style="color:#a6e22e">base</span>(<span style="color:#a6e22e">foo</span>)
+	}
+	<span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">m</span>
+}
 </code></pre></div><p>Benchmarking on my machine I get results like:</p>
 <pre><code>$ go test -bench=. -benchtime=60s
 
@@ -184,7 +299,7 @@ ok  	github.com/smantic/bench-struct-to-map	273.862s
 <p>Makes me feel a bit better about writing out the struct mapping by hand!</p>
 <p>code : <a href="https://github.com/smantic/bench-struct-to-map">https://github.com/smantic/bench-struct-to-map</a></p>
 <hr>
-<h3 id="other-libraries">Other Libraries<a href="#other-libraries" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="other-libraries">Other Libraries</h3>
 <p>If you google &ldquo;go struct to map&rdquo; you are likely to stumble upon <a href="https://stackoverflow.com/questions/23589564/function-for-converting-a-struct-to-map-in-golang">this SO post</a>.<br>
 The accepted answer mentions <a href="https://github.com/fatih/structs">fatih/structs</a>. However, this project still uses reflection and has been unmaintained for years.</p>
 <p>Any other project will likely have performance worse or close to the reflection method, since they will all be using reflection underneath.</p>
@@ -201,38 +316,85 @@ PASS
 ok  	github.com/smantic/bench-struct-to-map	79.679s
 </code></pre><p>¯\_(ツ)_/¯</p>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://blog.smantic.dev/tags/go">go</a></span><span class="tag"><a href="https://blog.smantic.dev/tags/benchmark">benchmark</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>494 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-10-26 21:02 -0500</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-commit"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg><a href="https://github.com/smantic/blog/commit/269a32aae81734a45505906831bc58c433eaace1" target="_blank" rel="noopener">269a32a</a> @ 2021-10-26</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="prev-post" href="https://blog.smantic.dev/posts/reddit/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>reddit</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
-</div>
-	</main>
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="https://blog.smantic.dev/posts/reddit/">
+                  <span class="button__text">reddit</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
 
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2021 <a href="https://blog.smantic.dev">tyler beverley</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://blog.smantic.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+    </div>
+    <div class="footer"> 
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >smantics</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2021 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://blog.smantic.dev/assets/main.js"></script>
+<script src="https://blog.smantic.dev/assets/prism.js"></script>
 
 
 
-	<script src="https://blog.smantic.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
-	
+      
+    </div> 
 
-</body>
-
+    
+  </body>
 </html>
