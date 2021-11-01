@@ -1,0 +1,29 @@
+code { 
+    font-feature-settings: initial;
+}
+.logo__cursor {
+    background: #59ff73;;
+}
+
+body { 
+    display: flex;
+    flex-direction: column; 
+    height: 100vh;
+}
+
+.container { 
+    flex: 1;
+    .post {
+        margin: 0px;
+    }
+}
+.container, .content {
+    justify-content: flex-start;
+}
+
+.footer { 
+    display: flex; 
+    justify-content: center;
+    padding: 10px;
+}
+

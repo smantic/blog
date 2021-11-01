@@ -2,12 +2,16 @@
 title: "dual-booting"
 date: 2021-04-06T22:32:51-05:00
 draft: false
-categories: 
-- linux
+toc: true
+tags: 
+  - linux
 ---
+
+---
+
 This is a guide to a bare metal dual boot of Windows 10 and Ubuntu. No emulation, or virtualization.
 Most of this guide comes from my personal experiance over several years of having a dual boot install, 
-any pain points that I highlight are because I have experianced them myself. Obiviously, this is not  
+any pain points that I highlight are because I have experianced them myself. Obiviously, this is not 
 a complete resource of all the information you might need to do this, but this post does have all the information you mighy need.   
 
 Notice that I say that it is a dual boot of Windows 10, and Ubuntu (windows first). 
@@ -72,7 +76,8 @@ I'd recomend doing that as it's convient and free software is a conversation for
 I'd esspically recomend doing this if you are running a computer with a Nividia graphics card 
 or if your on a laptop that has just recently came into the market.
                     
-When you get to the point where the Installer asks how you want to install, select "Something else", instead of the other options. We are going to manually create the partitions to ensure the partions are set up how we want them to be.  
+When you get to the point where the Installer asks how you want to install, select "Something else", instead of the other options. We are going to manually create the partitions to ensure the partions are set up how we want them to be.
+  
 These are the partitions that we will want to have, enter them in this order.  
 * A swap partition for temporary files / hibernation. 
 * Boot partition (/boot) for GRUB 
@@ -95,7 +100,8 @@ After booting into windows your GRUB should recognize windows as an option to bo
 And thats it! All done! Hopefullly, everything went smoothly for you, otherwise don't be afraid to ask for help. 
 Do your best to identify what the problem may be and other people will do their best to help you solve it! 
 
-# Annotations
+Notes 
+---
 
 ### 1 - Windows installer
 

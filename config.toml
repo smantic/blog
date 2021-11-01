@@ -1,76 +1,68 @@
 baseURL = "https://blog.smantic.dev"
 languageCode = "en-us"
-defaultContentLanguage = "en"
-title = "smantics"
-theme = "hermit"
-
+theme = "hello-friend"
+paginate = 5
 enableGitInfo = true
-pygmentsCodefences  = true
-pygmentsUseClasses  = true
-
-# hasCJKLanguage = false  # If Chinese/Japanese/Korean is your main content language, enable this to make wordCount works right.
-rssLimit = 10  # Maximum number of items in the RSS feed.
-copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
-enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
-# googleAnalytics = "UA-123-45"
-# disqusShortname = "yourdiscussshortname"
-
-[author]
-  name = "tyler beverley"
-
-[blackfriday]
-  # hrefTargetBlank = true
-  # noreferrerLinks = true
-  # nofollowLinks = true
-
-[taxonomies]
-  tag = "tags"
-  # Categories are disabled by default.
 
 [params]
-  dateform        = "Jan 2, 2006"
-  dateformShort   = "Jan 2"
-  dateformNum     = "2006-01-02"
-  dateformNumTime = "2006-01-02 15:04 -0700"
+  # dir name of your blog content (default is `content/posts`).
+  # the list of set content will show up on your index page (baseurl).
+  contentTypeName = "posts"
 
-  # Metadata mostly used in document's head
-  # description = ""
-  # images = [""]
-  themeColor = "#494f5c"
+  # "light" or "dark"
+  defaultTheme = "dark"
 
-  homeSubtitle = "truth through language"
-  footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
-  # bgImg = ""  # Homepage background-image URL
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 2
 
-  # Prefix of link to the git commit detail page. GitInfo must be enabled.
-  gitUrl = "https://github.com/smantic/blog/commit/"
+  # Show reading time in minutes for posts
+  showReadingTime = false
 
-  # Toggling this option needs to rebuild SCSS, requires Hugo extended version
-  justifyContent =  false  # Set "text-align: justify" to `.content`.
+  # Show table of contents at the top of your posts (defaults to false)
+  # Alternatively, add this param to post front matter for specific posts
+  # toc = true
 
-  relatedPosts = false  # Add a related content section to all single posts page
+  # Show full page content in RSS feed items
+  #(default is Description or Summary metadata in the front matter)
+  # rssFullText = true
 
-  code_copy_button = true # Turn on/off the code-copy-button for code-fields
-  
-  # Add custom css
-  # customCSS = ["css/foo.css", "css/bar.css"]
+  hideReadMore=true
 
-  # Social Icons
-  # Check https://github.com/Track3/hermit#social-icons for more info.
-  [[params.social]]
-    name = "github"
-    url = "https://github.com/smantic"
+[languages]
+  [languages.en]
+    title = "smantics"
+    subtitle = "truth through language"
+    keywords = ""
+    copyright = ""
+    menuMore = "Show more"
+    writtenBy = "Written by"
+    readMore = ""
+    readOtherPosts = "Read other posts"
+    newerPosts = "Newer posts"
+    olderPosts = "Older posts"
+    minuteReadingTime = "min read"
+    dateFormatSingle = "2006-01-02"
+    dateFormatList = "2006-01-02"
+    # leave empty to disable, enter display text to enable
+    # lastModDisplay = "modified"
 
-[menu]
-  [[menu.main]]
-    name = "Posts"
-    url = "posts/"
-    weight = 10
+    [languages.en.params.logo]
+      logoText = "smantics"
+      logoHomeLink = "/"
+    # or
+    #
+    # path = "/img/your-example-logo.svg"
+    # alt = "Your example logo alt text"
 
-  [[menu.main]]
-    name = "About"
-    url = "readme/"
-    weight = 20
+    [languages.en.menu]
+      [[languages.en.menu.main]]
+        identifier = "readme"
+        name = "readme"
+        url = "/readme"
+      [[languages.en.menu.main]]
+        identifier = "showcase"
+        name = "showcase"
+        url = "/showcase"
 
 
 [deployment]

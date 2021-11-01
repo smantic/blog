@@ -11,8 +11,6 @@ tags:
 
 Occasionally in go we want convert our structured data into an unstructured format, such as a `map[string]interface{}`
 
-
-
 for struct like: 
 
 ```go 
