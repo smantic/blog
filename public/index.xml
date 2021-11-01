@@ -9,10 +9,32 @@
     <description>Recent content on smantics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 Oct 2021 21:02:11 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 31 Oct 2021 21:18:24 -0500</lastBuildDate>
     
 	<atom:link href="https://blog.smantic.dev/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>PTWFL</title>
+      <link>https://blog.smantic.dev/posts/post-the-whole-log/</link>
+      <pubDate>Sun, 31 Oct 2021 21:18:24 -0500</pubDate>
+      
+      <guid>https://blog.smantic.dev/posts/post-the-whole-log/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Recently at work I&amp;rsquo;ve been helping to onboard a few new folks. When they run into a technical issue and ask for help it is often the case they aren&amp;rsquo;t aware of the actual problem is. They will often ask about something else entirely that actually isn&amp;rsquo;t the problem that they ran into.1
+I often find myself saying something along the lines of
+ can you post the whole log?
+          
+        
+        </description>
+    </item>
     
     <item>
       <title>struct-to-map</title>
