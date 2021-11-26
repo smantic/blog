@@ -7,6 +7,7 @@ draft: false
 Look. I'm no genius. I didn't go to an ivy league school 
 and I don't have a prestigious list of engineering achievements. 
 I can't help you with your calculus and I'm not really sure what a state machine is.  
+  
 The one thing that I have in common with the geniuses that do know these things is that we 
 both are in pursuit of knowledge. We seek to understand the world, bringing light to the unknown.
 It's the pursuit of truth and the nature of this blog. By trade I am a software engineer so
