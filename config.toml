@@ -1,7 +1,6 @@
 baseURL = "https://blog.smantic.dev"
 languageCode = "en-us"
 theme = "hello-friend"
-paginate = 5
 enableGitInfo = true
 
 [params]
