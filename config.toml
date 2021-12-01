@@ -65,9 +65,6 @@ enableGitInfo = true
 
 
 [deployment]
-[[deployment.targets]]
-name = "gcp"
-url = "gs://smantic-blog-us-central1-files"
 
 [[deployment.matchers]]
 # Cache static assets for 1 year.
