@@ -6,22 +6,22 @@ draft: false
 
 I loved playing pokemon games as kid. Problem is that I still love playing them. 
 I've played pokemon games on emulators at my PC, but sitting at computer after I just sat there all day for my job doesn't really capture the joys of my childhood.  
-So I've started to trying to find a handheld device that will let me rexperiance the glory days of the game boy and the nintendo DS.  
+So I've started to trying to find a handheld device that will let me re-experience the glory days of the game boy and the Nintendo DS.  
 
-However, it's been a decade plus since I last used any of my nintendo handhelds, 
+However, it's been a decade plus since I last used any of my Nintendo handhelds, 
 and even if I knew where they were I doubt they'd be very useable at this point. Not to mention that I have new expectations of the hardware I use. 
-The only charging adapters I have now are usbc, and the only SD cards I own are 256 gb or more. Both of which didn't exist in 2006. 
+The only charging adapters I have now are USBC, and the only SD cards I own are 256 GB or more. Both of which didn't exist in 2006. 
   
 Ideally I'd like to use my switch to play the classic pokemon games that I loved. It has everything I want in a handheld console in 2021. 
-Support for large capacity sd cards, usbc connection and charging, as well as detachable controller and the ability drive a widescreen tv. 
-However, the ability to play the old pokemon games that I love is virtually non-existant on the switch. 
-I've explored what homebrew is like on the switch, with moderate success but immense disapointment.
+Support for large capacity SD cards, USBC connection and charging, as well as detachable controller and the ability drive a widescreen TV. 
+However, the ability to play the old pokemon games that I love is virtually non-existent on the switch. 
+I've explored what homebrew is like on the switch, with moderate success but immense disappointment.
 
   
 ## Homebrew on the switch
   
-The current state of homebrew on the switch is inconvient to say the least. Homebrew currently works through an exploit called Fusée Gelée.
-Which works by exploiting the boot process of vulnerable Tegra SoC (system on a chip) CPU. Which are dual core ARM cpus and happen to be used in the switch.
+The current state of homebrew on the switch is inconvenient to say the least. Homebrew currently works through an exploit called Fusée Gelée.
+Which works by exploiting the boot process of vulnerable Tegra SoC (system on a chip) CPU. Which are dual core ARM CPUs and happen to be used in the switch.
 Since we are exploiting the boot process of the processor there is no presisting of the exploit after a reboot. 
 So if your switch ever turns off you'll` need to do the exploit over again. 
 Which consists of putting your switch into recovery mode by grounding specific pins on switch's joycon rail 
