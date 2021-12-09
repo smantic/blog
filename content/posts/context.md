@@ -1,7 +1,7 @@
 ---
 title: Hitchhiker's Guide To Context
 date: 2021-12-09T20:01:50-06:00
-draft: true
+draft: false
 tags: 
   - go
 ---
