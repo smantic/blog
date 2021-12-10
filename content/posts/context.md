@@ -1,8 +1,8 @@
 ---
-title: Hitchhiker's Guide To Context
-date: 2021-12-09T20:01:50-06:00
+title: "Hitchhiker's Guide To Context"
+date: 2021-12-09T18:13:26-06:00
 draft: false
-tags: 
+tags:
   - go
 ---
 
@@ -217,5 +217,6 @@ func (h *Handler) Handle(w http.ResponseWriter, r *http.Request){
 We've seen that contexts are a versatile pattern that enable a wide array of useful functionality, including Timeouts, Cancellations, Logging, and Tracing. 
 I'm looking forward to seeing contexts being adapted more in the industry and also looking forward to seeing more functionality being enabled by the use of context, 
 such as no op mode and memoirs. 
+
 
 [^1]: https://pkg.go.dev/context#Context
