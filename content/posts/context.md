@@ -6,14 +6,14 @@ tags:
   - go
 ---
 
-If you're new to go you might have seen some functions like
+If you're new to Go you might have seen some functions like
 
 ```go 
 func Foo(ctx context.Context) error
 ```
 
 Context is a pattern frequently used in systems programming to help manage the life cycle of complex systems. 
-We see it used a lot in go as its considered good practice, is part of the standard library and is extremely useful.
+We see often in Go as its considered good practice, is part of the standard library, and is extremely useful.
 
 In go we have `context.Context` which is an interface like [^1]
 
@@ -75,7 +75,7 @@ Timeouts are useful for situations where you may have a long running request or
 database query and you don't have all day to wait, or want to guard against an error that would cause 
 the request to hang infinitely. 
 
-We create a context that has a timeout like
+We can create a context that has a timeout like:
 ```go 
 import (
     "time"
@@ -105,10 +105,10 @@ Its good practice to call cancel after the downstream consumer has finished, ens
 Sometimes you may want to use context to let you know if you should continue with some operation in your system. 
 How do we know when a context has been cancelled? Or its deadline has been passed? 
 
-The way context implements "cancellation" is by using a channel, when we receive something on the channel we know we should halt further work.
+The way context implements _cancellation_ is by using a channel, when we receive something on the channel we know we should halt further work.
 There are a couple ways you can do this. 
 
-1st. by using `select`
+One way is by using `select`
 
 ```go
 import( 
@@ -128,9 +128,9 @@ func SomeRunningProcesses(ctx context.Context) error {
 }
 ```
 
-Select will execute the case that happens first, either we receive value `x` from the generated `fooChan`, 
+`select` will execute the case that happens first. Either we receive value `x` from the generated `fooChan`, 
 or we receive a struct on the done channel of the context.
-If the context has signaled done then `context.Error()` will give us an error 
+If the context has signaled done, then `context.Error()` will give us an error 
 noting that the context was either cancelled or that the deadline has passed. 
 
 If you are working in a single thread, and want to check that the context hasn't been 
@@ -171,10 +171,10 @@ func Foo(ctx context.Contex) {
 
 ### Traces and Spans
 
-If your system is complex enough it may be useful to implement traces and spans. 
+If your system is complex enough, it may be useful to implement traces and spans. 
 Traces and spans give us valuable insights that are immediately apparent such as: what the call graph of our system looks like, and how long we are spending in each function.
 
-If you use something like lighshot you can get a very informative call graph of your trace.
+If you use something such as lighshot you can get a very informative call graph of your trace.
 {{< 
     figure src="/images/trace_main.webp"
     caption="A screenshot of lightstep's very nice trace overview"
@@ -186,7 +186,7 @@ If you use something like lighshot you can get a very informative call graph of 
 So far in all of the examples we have a function that has a context provided to it. This is because the idea of context is that it starts at the beginning of your process.  
 When that is depends on what you are doing. 
 
-If you are just running a program that needs to cancel when an interrupt is received then you will start with `context.Background()` 
+If you are running a program that needs to cancel when an interrupt is received then you will start with `context.Background()` 
 and attach the necessary signals to the context in the main thread.
 
 
@@ -202,8 +202,8 @@ func main() {
 }
 ```
 Sometimes you are working with a process spawned by a http server. 
-In this case generally we get the context attached to the  http request since we are handling the request in a newly spawned thread.
-And pass that to functions that the http handler calls.
+In this case, generally we get the context attached to the  http request since we are handling the request in a newly spawned thread.
+We then pass that to functions that the http handler calls.
 
 ```go
 func (h *Handler) Handle(w http.ResponseWriter, r *http.Request){ 
@@ -215,8 +215,6 @@ func (h *Handler) Handle(w http.ResponseWriter, r *http.Request){
 ### And More...
 
 We've seen that contexts are a versatile pattern that enable a wide array of useful functionality, including Timeouts, Cancellations, Logging, and Tracing. 
-I'm looking forward to seeing contexts being adapted more in the industry and also looking forward to seeing more functionality being enabled by the use of context, 
-such as no op mode and memoirs. 
-
+I'm looking forward to seeing even more functionality being enabled by the use of context.
 
 [^1]: https://pkg.go.dev/context#Context
