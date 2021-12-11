@@ -6,16 +6,16 @@ tags:
   - go
 ---
 
-If you're new to go you might have seen some functions like
+If you're new to Go, you may have seen functions such as:
 
 ```go 
 func Foo(ctx context.Context) error
 ```
 
-Context is a pattern frequently used in systems programming to help manage the life cycle of complex systems. 
-We see it used a lot in go as its considered good practice, is part of the standard library and is extremely useful.
+`Context` is a pattern frequently used in systems programming to help manage the life cycle of complex systems. 
+We often see it used in Go as its considered good practice, is part of the standard library, and is extremely useful.
 
-In go we have `context.Context` which is an interface like [^1]
+In Go, we have `context.Context` which is an interface like [^1]
 
 ```go 
 type Context interface {
@@ -35,17 +35,15 @@ func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)
 func WithValue(parent Context, key, val interface{}) Context
 ```
 
-# Using contexts
+# Using Contexts
 
-Put simply. You should use context whenever a resource is being used, such as a database, file(s), a http server, and etc. 
-Which happens to a very frequent thing that we do as programmers, and why we see it used all the time in go. 
+To put it simply, you should use `context` whenever a resource is being used such as a database, file(s), an http server, etc. This happens to be a frequent thing that we, as programmers, do and why we often see it used in Go.
 
 ### Cancellation
 
 The bread and butter of `context.Context` is to be used to control the flow of the program by providing timeout and cancellation logic.  
 
-In the case that something happens and we can to tell downstream consumers of the
-context to halt, or cancel execution we can use the provided cancel function.
+In the case of somethign happening, we can tell downstream consumers of the context to halt or cancel execution using the provided cancel function. 
 
 ```go
 import (
@@ -66,16 +64,13 @@ func SomeProcess(parentCtx context.Context) error {
 }
 ```
 
-Something errors and we don't need to continue the work being done in `DoQuery`, so we signal the context to be cancelled by 
-invoking the cancel function we got. When downstream consumers of the context inspect the context they will see that the context has been cancelled.
+Within the code above, something bad happens and we want to cancel the `context`. When this happens, we don't need the continue the current work being done in `DoQuery` so we signal the `context` to be cancelled by invoking the `cancel` function. When downstream consumers of the `context` inspect the `context`, they will see that the `context` has been cancelled.
 
 ### Timeouts 
 
-Timeouts are useful for situations where you may have a long running request or 
-database query and you don't have all day to wait, or want to guard against an error that would cause 
-the request to hang infinitely. 
+Timeouts are useful in situations where you may have a long running request, a hanging database query, or want to guard against an error that would cause the request to hang infinitely. 
 
-We create a context that has a timeout like
+We can create a context that has a timeout such as the one shown below:
 ```go 
 import (
     "time"
@@ -97,18 +92,19 @@ func LongRuningDatabaseQuery(parentCtx context.Context) error {
 }
 ```
 
-Note that `context.WithTimeout` gives us a cancel func like `context.WithCancel` does.
-Its good practice to call cancel after the downstream consumer has finished, ensuring the newly created context does not leak.
+Note that `context.WithTimeout` gives us a cancel func similar to what `context.WithCancel` does.
+It is good practice to call cancel after the downstream consumer has finished, ensuring the newly created context does not leak.
 
-### Consuming a context
+### Consuming a Context
 
-Sometimes you may want to use context to let you know if you should continue with some operation in your system. 
-How do we know when a context has been cancelled? Or its deadline has been passed? 
+Sometimes you may want to use `context` to let you know if you should continue with an operation in your system. 
+How do we know when a context has been cancelled? Or its deadline has passed? 
 
-The way context implements "cancellation" is by using a channel, when we receive something on the channel we know we should halt further work.
-There are a couple ways you can do this. 
+The way `context` implements _cancellation_ is by using a channel. When we receive something on the channel, we know we should halt further work.
 
-1st. by using `select`
+There are a couple ways you can do this.
+
+1st. by using `select`:
 
 ```go
 import( 
@@ -128,13 +124,13 @@ func SomeRunningProcesses(ctx context.Context) error {
 }
 ```
 
-Select will execute the case that happens first, either we receive value `x` from the generated `fooChan`, 
+`Select` will execute the case that happens first. Either we receive value `x` from the generated `fooChan` 
 or we receive a struct on the done channel of the context.
-If the context has signaled done then `context.Error()` will give us an error 
+If the context has signaled done, then `context.Error()` will give us an error 
 noting that the context was either cancelled or that the deadline has passed. 
 
 If you are working in a single thread, and want to check that the context hasn't been 
-cancelled yet periodically we can use `context.Error()` to check the state of the context.
+cancelled yet, we can periodically use `context.Error()` to check the state of the context.
 
 ```go 
 for context.Error() == nil { 
@@ -144,13 +140,12 @@ for context.Error() == nil {
 
 ### Logging 
 
-With contexts we have the ability to attach values to the context using 
+With contexts we have the ability to attach values to the context using:
 ```go
 func WithValue(parent Context, key, val interface{}) Context
 ```
-We can add any key / value to the context to be passed to downstream consumers. 
-Its not recommended to use this for critical types in your system, since we loose any strict typing, but
-for non-critical things like logging, this feature is useful. 
+We can add any key / value to the context being passed to downstream consumers. 
+It is not recommended to use this for critical types in your system, due to losing any strict typing. However, for non-critical things such as logging...this feature is quite useful. 
 
 ```go
 import "context"
@@ -167,26 +162,27 @@ func Foo(ctx context.Contex) {
 }
 ```
 
-`WithValue` is also useful for keeping track of other non-critical state such as a trace/span IDs, or an event log.
+`WithValue` is also useful for keeping track of other non-critical state such as a trace/span IDs or an event log.
 
 ### Traces and Spans
 
-If your system is complex enough it may be useful to implement traces and spans. 
-Traces and spans give us valuable insights that are immediately apparent such as: what the call graph of our system looks like, and how long we are spending in each function.
+If your system is complex enough, it may be useful to implement `traces` and `spans`. 
+`Traces` and `spans` give us valuable insights that are immediately apparent such as: what the call graph of our system looks like and how long we are spending in each function.
 
-If you use something like lighshot you can get a very informative call graph of your trace.
+If you use something such as lighshot, you can get a very informative call graph of your trace.
 {{< 
     figure src="/images/trace_main.webp"
     caption="A screenshot of lightstep's very nice trace overview"
     link="https://docs.lightstep.com/images/docs/trace_main.png?_cchid=a5af5c6653869d9aa940829e87bd5196"
 >}}
 
-### Parent contexts
+### Parent Contexts
 
-So far in all of the examples we have a function that has a context provided to it. This is because the idea of context is that it starts at the beginning of your process.  
-When that is depends on what you are doing. 
+So far in all of the examples, we have a function that has a context provided to it. This is because the idea of context is that it starts at the beginning of your process.  
 
-If you are just running a program that needs to cancel when an interrupt is received then you will start with `context.Background()` 
+This completely depends on what you are doing. 
+
+If you are running a program that needs to cancel when an interrupt is received, you will start with `context.Background()` 
 and attach the necessary signals to the context in the main thread.
 
 
@@ -201,9 +197,9 @@ func main() {
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, os.Kill)
 }
 ```
-Sometimes you are working with a process spawned by a http server. 
-In this case generally we get the context attached to the  http request since we are handling the request in a newly spawned thread.
-And pass that to functions that the http handler calls.
+Sometimes you are working with a process spawned by an http server. 
+In this case, generally, we get the context attached to the  http request since we are handling the request in a newly spawned thread.
+We then pass that to functions that the http handler calls.
 
 ```go
 func (h *Handler) Handle(w http.ResponseWriter, r *http.Request){ 
@@ -214,9 +210,10 @@ func (h *Handler) Handle(w http.ResponseWriter, r *http.Request){
 ```
 ### And More...
 
-We've seen that contexts are a versatile pattern that enable a wide array of useful functionality, including Timeouts, Cancellations, Logging, and Tracing. 
-I'm looking forward to seeing contexts being adapted more in the industry and also looking forward to seeing more functionality being enabled by the use of context, 
-such as no op mode and memoirs. 
+We've seen that `contexts` are a versatile pattern that enable a wide array of useful functions including Timeouts, Cancellations, Logging, and Tracing. 
+
+I'm looking forward to seeing `contexts` being adapted more in the industry and also looking forward to seeing more functionality being enabled by the use of context, 
+such as no-op mode and memoirs. 
 
 
 [^1]: https://pkg.go.dev/context#Context
