@@ -183,7 +183,7 @@ If you use something such as lighshot you can get a very informative call graph 
 
 ### Parent contexts
 
-So far in all of the examples we have a function that has a context provided to it. This is because the idea of context is that it starts at the beginning of your process.  
+So far in all of the examples we have a function that has a context provided to it. This is because the idea of context is that it starts at the beginning of your process.
 When that is depends on what you are doing. 
 
 If you are running a program that needs to cancel when an interrupt is received then you will start with `context.Background()` 
@@ -202,8 +202,8 @@ func main() {
 }
 ```
 Sometimes you are working with a process spawned by a http server. 
-In this case, generally we get the context attached to the  http request since we are handling the request in a newly spawned thread.
-We then pass that to functions that the http handler calls.
+In this case, we get the context attached to the http request since we are handling the request in a newly spawned thread.
+We then pass that context to functions that the http handler calls.
 
 ```go
 func (h *Handler) Handle(w http.ResponseWriter, r *http.Request){ 
