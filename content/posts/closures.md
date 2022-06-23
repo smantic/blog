@@ -2,6 +2,8 @@
 title: "injection with closures"
 date: 2021-11-27T13:52:39-06:00
 draft: false
+tags: 
+  - go
 ---
 
 In languages that have first class functions we can define closures that lexically capture values in the scope that they are defined in.

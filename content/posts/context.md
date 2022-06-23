@@ -1,5 +1,5 @@
 ---
-title: "Hitchhiker's Guide To Context"
+title: "context"
 date: 2021-12-09T18:13:26-06:00
 draft: false
 tags:
@@ -12,8 +12,8 @@ If you're new to Go you might have seen some functions like
 func Foo(ctx context.Context) error
 ```
 
-Context is a pattern frequently used in systems programming to help manage the life cycle of complex systems. 
-We see often in Go as its considered good practice, is part of the standard library, and is extremely useful.
+Context is a pattern frequently used to help manage the life cycle of complex systems. 
+We see it often in Go as its considered good practice, is part of the well vetted standard library, and is extremely useful.
 
 In go we have `context.Context` which is an interface like [^1]
 

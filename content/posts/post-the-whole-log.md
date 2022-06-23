@@ -2,7 +2,7 @@
 title: "PTWFL"
 date: 2021-10-31T21:18:24-05:00
 toc: false
-draft: false
+draft: true
 ---
 
 Recently at work I've been helping to onboard a few new folks. 
