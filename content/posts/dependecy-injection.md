@@ -1,7 +1,7 @@
 ---
 title: "dependency injection" 
 date: 2022-06-21T02:08:27-05:00
-draft: true
+draft: false
 tags: 
   - go
 ---
