@@ -31,7 +31,7 @@ func ServeHTTP(w http.ResponseWriter, r *http.Request){
 This function signature is required in order to mount it onto the stdlib's http server.[^1] 
 
 ```go 
-func HelloHandler(w http.ResponseWriter, req *http.Request) {
+func HelloHandler(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, "Hello, world!\n")
 }
 
@@ -60,7 +60,7 @@ type HelloHandler struct {
 	data string
 }
 
-func (h *HelloHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+func (h *HelloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, h.data)
 }
 
@@ -155,6 +155,9 @@ func TestFooHandler(t *testing.T) {
 }
 
 ```
+
+
+Read [Mike Epp's article](https://betterprogramming.pub/context-less-go-854db3e5510) on DI for a good critic of some clever but not so useful ways people have tried to do DI in go. 
 
 
 <!---
