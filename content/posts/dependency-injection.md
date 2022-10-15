@@ -123,8 +123,8 @@ type FooHandler struct {
     dep DoSomethinger
 }
 
-func FooHandler(w http.ResponseWriter, req *http.Request) {
-    err := external.DefaultService.DoSomething()
+func (f *FooHandler) Foo(w http.ResponseWriter, req *http.Request) {
+    err := f.dep.DoSomething()
     if err != nil { 
         http.Error(w, err, 500)
     }
@@ -141,7 +141,7 @@ func TestFooHandler(t *testing.T) {
      // expect a call to DoSomething()
 
      f := FooHandler{ dep: m } 
-     s := httptest.NewServer(http.HandlerFunc(f.FooHandler))
+     s := httptest.NewServer(http.HandlerFunc(f.Foo))
 
      r := httptest.NewRequest(http.MethodGET, s.URL, nil)
      resp, err := http.DefaultClient.Do(r)
