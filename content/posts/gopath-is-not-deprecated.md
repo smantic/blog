@@ -9,7 +9,7 @@ tags:
 Maybe you've heard someone say something like; 
 > "Gopath is deprecated, use go modules".
 
-While what they mean to say is true, developing in gopath mode is deprecated. However, when interpreted literally this statement is not true. And very likely confuses new comers to go. 
+While what they mean to say is true, that is developing in gopath mode is deprecated. When interpreted literally this statement is not true. And very likely confuses new comers to go. 
 Lets peel back a layer of the onion and be exact with what we mean to say. 
 
 The action of developing inside of Gopath *and* not using modules is deprecated. 
