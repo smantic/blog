@@ -22,14 +22,14 @@ Maybe this confusion stirs from a few poorly worded google results. [1](https://
 
 
 
-So gopath *mode* is deprecated. But what is gopath, and what is it used for? 
+So gopath *mode* is deprecated. But what about gopath, what is it and what is it used for? 
 
 Gopath is an environment variable that which defaults to $HOME/go. 
 And is used to determine defaults for where modules are downloaded to($GOMODCACHE), where binaries are installed ($GOBIN), and where checksums are stored ($GOPATH/pkg/sumdb).
 
 So gopath is itself is still very much in use, and will continue to be in the future. 
 
-All this info and more can be found in this very helpful [wiki](https://github.com/golang/go/wiki/GOPATH))! 
+All this info and more can be found in this very helpful [wiki](https://github.com/golang/go/wiki/GOPATH)!
 
 Read More 
 ----
