@@ -8,8 +8,8 @@ tags:
 
 `golang.org/x/exp/slog` is a new experimental package implementing a structured logger. Originating from this [proposal](https://go.googlesource.com/proposal/+/master/design/56345-structured-logging.md) it aims to get a structured logging library into the stdlib. 
 
-If you're not familiar with structured logging. It is generally the superior way to do logging. The idea is just to add some structure to the log lines. Generally in the form of key value pairs. 
-You can output your log line in either [JSON format](https://pkg.go.dev/golang.org/x/exp/slog#JSONHandler), or simply [separated by a space](https://pkg.go.dev/golang.org/x/exp/slog#TextHandler).
+If you're not familiar with structured logging. It is, generally, the superior way to do logging. The idea is just to add some structure to the log lines in the form of key value pairs. 
+Typical structure is usually either [JSON format](https://pkg.go.dev/golang.org/x/exp/slog#JSONHandler), or simply [separated by a space](https://pkg.go.dev/golang.org/x/exp/slog#TextHandler).
 
 
 I've recently been working on a logging middleware to use at work that utilizes x/slog. It looks like this.
@@ -43,12 +43,13 @@ I've recently been working on a logging middleware to use at work that utilizes 
 	)
 ```
 
-The first bit creates a new slog logger with some fields to start with from our base logger stored in the middleware struct `mw` (see: [dependency injection](https://blog.smantic.dev/posts/dependency-injection/)). We also attach our request context to the logger. This can be helpful in the case your logging backend stores fields in fields in the context, so you can pass the request context to the call to your logging backend.  
+The first part creates a new slog logger with some fields to start with.
+It creates a new logger from our base logger stored in the middleware struct `mw` (see: [dependency injection](https://blog.smantic.dev/posts/dependency-injection/)). We also attach our request context to the logger. This can be helpful in the case your logging backend stores fields in fields in the context, so you can pass the request context to the call to your logging backend.  
 
 Next I create a new context with [slog.NewContext](https://pkg.go.dev/golang.org/x/exp/slog#NewContext), which gives you a context that contains your logger. 
-This is so that downstream handlers from this logging middleware can access the logger (and any fields you've set on the logger). They can get it by using [slog.FromContext](https://pkg.go.dev/golang.org/x/exp/slog#NewContext). This is context based dependency injection and is common strategy when dealing with meta things like logging and propagating things through middleware.  
+This is so that downstream handlers from this logging middleware can access the logger (and any fields you've set on the logger). They can get it by using [slog.FromContext](https://pkg.go.dev/golang.org/x/exp/slog#NewContext). This is context based dependency injection and is common strategy when dealing with meta or life cycle things like logging and is particularly useful to propagate these things between middleware and http handlers.   
 
-Here are 2 example log lines were I've set up the logger with some basic fields, passed the logger to downstream handlers, and then once the handler was finished reused the logger (exactly what happens in the middleware code above) 
+To give you an idea of what this is like, here are 2 example log lines from this middleware. The initial fields path, route, and started got attached to the logger, so all downstream log calls includes those fields.   
 ```
 2022/12/10 18:15:35 INFO log line for event that happens durring the handling of the request path=/test route=test start=2022-12-10T18:15:35.774-06:00
 2022/12/10 18:15:35 INFO finished http request path=/test route=test start=2022-12-10T18:15:35.774-06:00 duration=120.542µs finish=2022-12-10T18:15:35.774-06:00
