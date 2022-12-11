@@ -44,7 +44,7 @@ I've recently been working on a logging middleware to use at work that utilizes 
 ```
 
 The first part creates a new slog logger with some fields to start with.
-It creates a new logger from our base logger stored in the middleware struct `mw` (see: [dependency injection](https://blog.smantic.dev/posts/dependency-injection/)). We also attach our request context to the logger. This can be helpful in the case your logging backend stores fields in fields in the context, so you can pass the request context to the call to your logging backend.  
+It creates a new logger from our base logger stored in the middleware struct `mw` (see: [dependency injection](https://blog.smantic.dev/posts/dependency-injection/)). We also attach our request context to the logger. This can be helpful in the case your logging backend stores fields in the context, so you can pass the request context that might contain more fields to your logging backend.  
 
 Next I create a new context with [slog.NewContext](https://pkg.go.dev/golang.org/x/exp/slog#NewContext), which gives you a context that contains your logger. 
 This is so that downstream handlers from this logging middleware can access the logger (and any fields you've set on the logger). They can get it by using [slog.FromContext](https://pkg.go.dev/golang.org/x/exp/slog#NewContext). This is context based dependency injection and is common strategy when dealing with meta or life cycle things like logging and is particularly useful to propagate these things between middleware and http handlers.   
