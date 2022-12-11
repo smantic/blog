@@ -88,13 +88,13 @@ I'm a pretty a big fan of [uber/zap's](https://pkg.go.dev/go.uber.org/zap#Logger
 
 ---- 
 
-There is one thing that I really like about x/slog is the ability to change the logging backend that it uses. This means that slog.Logger can be a unifying logging interface (for structured logging). Something that go has struggled with for a long time. 
+There is one thing that I really like about x/slog which is the ability to change the logging backend that it uses. This means that slog.Logger can be a unifying logging interface (for structured logging). Something that go hasn't really had, as all the popular logging libraries express slightly different interfaces. 
 
 This means I can write a library. Say a logging middleware. The logging middleware can accept a
 `*slog.Logger` as a dependency. And you can pass in whatever logger you want into slog's [New function](https://pkg.go.dev/golang.org/x/exp/slog#New), and pass me the resulting `*slog.Logger`. 
 
 
-This will be useful for me at work, as I can write a wrapper around our company's logger. But here is an example that creates a handler wrapper around uber/zap. 
+This will be useful for me at work, as I can write a wrapper around our company's logger. To illustrate this  here is an example that creates a handler wrapper around uber/zap. 
 
 ```go
 type Middleware struct {
