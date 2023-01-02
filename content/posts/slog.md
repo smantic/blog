@@ -78,7 +78,7 @@ produces this
 ```
 
 The call will log will pair up key value fields given you pass an even number of non attribute types into the function. 
-You might be wondering, what if you dont? 
+You might be wondering, what if you don't? 
 ```go 
 2022/12/10 18:30:08 INFO finished http request !BADKEY=key
 ```
