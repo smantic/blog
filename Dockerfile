@@ -1,5 +1,3 @@
-FROM klakegg/hugo:0.101.0-onbuild AS hugo
-
 FROM caddy:2
-COPY --from=hugo /target /
+COPY ./public/ /
 RUN caddy file-server
