@@ -1,3 +1,3 @@
 FROM caddy:2
-ADD public /
-CMD caddy file-server --root public
+ADD public /srv
+CMD caddy file-server
