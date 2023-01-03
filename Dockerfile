@@ -1,3 +1,3 @@
 FROM caddy:2
-COPY ./public/ /
+ADD public .
 RUN caddy file-server

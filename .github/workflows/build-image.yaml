@@ -7,8 +7,6 @@ on:
     types:
       - published
 
-
-        
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
@@ -40,10 +38,14 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
-      - name: hugo
-        uses: klakegg/actions-hugo@1.0.0
-        with: 
-          image: ubuntu
+      - name: install go 
+        uses: actions/setup-go@v3
+
+      - name: install hugo
+        run: go install github.com/gohugoio/hugo@latest 
+
+      - name: build site 
+        run: hugo 
 
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
