@@ -1,3 +1,3 @@
 FROM caddy:2
-ADD public 
+ADD public /
 CMD caddy file-server
