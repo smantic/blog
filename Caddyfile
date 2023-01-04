@@ -1,7 +1,15 @@
 http:// {
-	file_server
+
+    log { 
+        format json 
+    }
+
     root * public/
     handle_errors {
-	    rewrite * /404.html 
+        rewrite * /404.html
+        file_server
     }
+
+	file_server
 }
+
