@@ -1,4 +1,5 @@
 smantic.dev blog.smantic.dev localhost {
+    auto_https off
 	handle_errors {
 		@404 {
 			expression {http.error.status_code} == 404
