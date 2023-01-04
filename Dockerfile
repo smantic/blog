@@ -1,4 +1,4 @@
 FROM caddy:2
 ADD public /srv
-ADD Caddyfile /etc/caddy/Caddyfile
+ADD Caddyfile /srv
 CMD caddy run
