@@ -1,7 +1,7 @@
 baseURL = "https://blog.smantic.dev"
 languageCode = "en-us"
 theme = "hello-friend"
-enableGitInfo = true
+enableGitInfo = false
 
 [params]
   # dir name of your blog content (default is `content/posts`).
@@ -9,7 +9,7 @@ enableGitInfo = true
   contentTypeName = "posts"
 
   # "light" or "dark"
-  defaultTheme = "dark"
+  defaultTheme = "light"
 
   # if you set this to 0, only submenu trigger will be visible
   showMenuItems = 2
