@@ -31,3 +31,23 @@ blockquote {
     margin: 20px;
     padding: 5px 20px; 
 }
+
+#horizon video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.overlay {
+
+  font-size: 52px;
+  font-family: "Lucida Console", Arial, serif;
+  color: black;
+  position:absolute;
+  top:15%;
+  left:45%;
+  z-index:1;
+}
