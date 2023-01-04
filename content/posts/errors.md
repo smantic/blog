@@ -5,7 +5,7 @@ draft: false
 ---
 
 Runtime errors are a bit different in Go compared to other languages. Go lacks the familiar error handling like try/catch. 
-Gophers think about errors a bit differently. In Go [errors are values](https://go.dev/blog/errors-are-values) like any other kind of type in go. 
+In Go [errors are values](https://go.dev/blog/errors-are-values) like any other kind of type in go. 
 Because of this we often see signatures that are like 
 
 `func DoSomething() error`
