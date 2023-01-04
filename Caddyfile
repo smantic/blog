@@ -1,5 +1,6 @@
 http:// {
 	file_server
+    root * public/
     handle_errors {
 	    rewrite * /404.html 
     }
