@@ -1,7 +1,10 @@
 ---
 title: "gorilla"
 date: 2023-01-21T18:27:27-06:00
-draft: true
+draft: false
+tags:
+  - go
+  - FOSS
 ---
 
 {{<
