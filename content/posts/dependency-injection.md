@@ -157,7 +157,7 @@ func TestFooHandler(t *testing.T) {
 ```
 
 
-Read [Mike Epp's article](https://betterprogramming.pub/context-less-go-854db3e5510) on DI for a good critic of some clever but not so useful ways people have tried to do DI in go. 
+Read [Mike Epps's article](https://betterprogramming.pub/context-less-go-854db3e5510) on DI for a good critic of some clever but not so useful ways people have tried to do DI in go. 
 
 
 <!---
