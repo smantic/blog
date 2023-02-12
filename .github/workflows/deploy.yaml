@@ -1,4 +1,4 @@
-name: Publish Docker Image
+name: Deploy
 
 on:
   push: 
@@ -53,3 +53,14 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Kubernetes context
+      uses: Azure/k8s-set-context@v1
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        namespace: default
+
+      - name: Deploy
+        run: kubectl rollout restart deployment blog
+     
