@@ -55,11 +55,11 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Kubernetes context
-      uses: Azure/k8s-set-context@v1
-      with:
-        method: kubeconfig
-        kubeconfig: ${{ secrets.KUBE_CONFIG }}
-        namespace: default
+        uses: Azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG }}
+          namespace: default
 
       - name: Deploy
         run: kubectl rollout restart deployment blog
