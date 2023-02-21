@@ -39,7 +39,7 @@ find . -type f \
     -exec sed -i -E 's,github.com/gorilla/(websocket|mux|handlers|schema),go.smantic.dev/\1,g' {} \;
 ```
 
-If you're on a mac, I recommend installing gsed.
+If you're on a mac, I recommend trying with gsed.
 
 
 # Repositories  
@@ -49,5 +49,3 @@ If you're on a mac, I recommend installing gsed.
 * sessions - [go.smantic.dev/sessions](https://github.com/smantic/sessions)
 * handlers- [go.smantic.dev/handlers](https://github.com/smantic/handlers)
 
----
-[^1]: Yes I know that lots of corporations ban any use of AGPL licensed software in their products. 
