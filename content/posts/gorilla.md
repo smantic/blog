@@ -28,7 +28,7 @@ If you have questions about how to use these repos kindly direct them to the com
 Or use other [Go help resources](https://go.dev/help).
 
 ## License
-I am licensing future versions under LGPL. For the most part this wont matter because these libraries almost always sit on a webserver somewhere, so are vulnerable to the ["Application Serivce Loophole"](https://fossa.com/blog/open-source-software-licenses-101-agpl-license/) of the GPL. But I do wish that if people were to make improvements upon these libraries that they open source them and share them with the wider community, like you would normally do with typical LGPL software.  
+The original license were kept and will continue to be used. 
 
 ## Migration
 
