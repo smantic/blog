@@ -58,10 +58,6 @@ enableGitInfo = false
         identifier = "readme"
         name = "readme"
         url = "/readme"
-      [[languages.en.menu.main]]
-        identifier = "showcase"
-        name = "showcase"
-        url = "/showcase"
 
 
 [deployment]
